@@ -21,8 +21,8 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 .allergen-icon,.allergens img{width:22px;height:22px}
 
 .article h3,.text-item h3{margin:6px 0 4px;font-size:14px}
-.price{color:#d32f2f;font-weight:bold;font-size:14px}
-
+.price{color:#d32f2f;text-align:right;font-weight:bold;font-size:14px}
+.menu_price{color:#d32f2f;font-weight:bold;font-size:22px}
 .text-item{text-align:center}
 
 .lang-switch{position:fixed;right:10px;bottom:10px;background:#fff;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.15);display:flex;overflow:hidden}
@@ -34,6 +34,64 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 .allergen-legend #legend{display:flex;flex-wrap:wrap;gap:8px}
 .allergen-legend #legend span{display:inline-flex;align-items:center;margin:2px 6px 2px 0;font-size:13px;color:#444}
 .allergen-legend img{width:14px;height:14px;margin-right:4px;vertical-align:middle}
+
+/* 横向并排样式（黑色背景 + 红白配色） */
+.package-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  padding:10px 0;
+}
+.package-box {
+  flex:1;
+  min-width:280px;
+  background:#111111;           /* 黑色背景 */
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.5);
+  color:#ffffff;                /* 默认白色字体 */
+}
+.package-box h3 {
+  color:#ff3333;                /* 红色标题 */
+  margin:0 0 15px;
+  font-weight:bold;
+  font-size:17px;
+}
+.package-box ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.package-box li{
+  padding:9px 0;
+  border-bottom:1px solid #333333;
+  color:#eeeeee;                /* 浅白色文字 */
+  font-size:14.5px;
+}
+.package-box li:last-child{border-bottom:none}
+
+.price-big{
+  font-size:28px;
+  font-weight:bold;
+  color:#ff3333;                /* 红色大价格 */
+  text-align:center;
+  margin:12px 0 20px;
+}
+.subtitle{
+  text-align:center;
+  color:#aaaaaa;                /* 浅灰说明文字 */
+  font-size:13.5px;
+  margin:8px 0 18px;
+}
+
+/* 当日菜单底部说明文字 */
+#menuDia p{
+  font-size:13.5px;
+  color:#aaaaaa;
+  text-align:center;
+  margin:25px 0 10px;
+}
+
 </style>
 </head>
 
@@ -216,6 +274,98 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
   </div>
 </div>
 
+<!-- ==================== 当日菜单（现在和特别套餐完全一样的横向并排） ==================== -->
+<h2 class="category" onclick="toggleCategory('menuDia', this)"><span class="cat" data-zh="当日菜单" data-es="Menú del día" data-en="Daily Menu">当日菜单</span> 
+  <div class="price-big">12.00 €</div> 
+  <p class="subtitle" data-zh="*包含饮料、甜品或咖啡，周一至周五午市（节假日除外）" data-es="*Incluido: Bebida Postre o Café, Lunes a viernes al mediodía Excepto día festivo" data-en="*Included Drink, Dessert or Coffee, Monday to Friday lunchtime Except holidays">Lunes a viernes al mediodía Excepto día festivo</p>
+<span>▼</span></h2>
+<div class="menu-list" id="menuDia">
+  <div class="package-row">
+    <!-- 第一道 -->
+    <div class="package-box">
+      <h3 data-zh="第一道（任选其一）" data-es="PRIMERO PLATO (ELEGIR UNO)" data-en="FIRST COURSE (CHOOSE ONE)">PRIMERO PLATO (ELEGIR UNO):</h3>
+      <ul>
+        <li><span data-zh="中国沙拉" data-es="Ensalada china" data-en="Chinese Salad">Ensalada china</span></li>
+        <li><span data-zh="春卷" data-es="Rollos de primavera" data-en="Spring rolls">Rollos de primavera</span></li>
+        <li><span data-zh="鱼翅汤" data-es="Sopa de aletas de tiburón" data-en="Shark fin soup">Sopa de aletas de tiburón</span></li>
+        <li><span data-zh="酸辣汤" data-es="Sopa agri picante" data-en="Hot and sour soup">Sopa agri picante</span></li>
+      </ul>
+    </div>
+
+    <!-- 第二道 -->
+    <div class="package-box">
+      <h3 data-zh="第二道（任选其一）" data-es="SEGUNDO PLATO (ELEGIR UNO)" data-en="SECOND COURSE (CHOOSE ONE)">SEGUNDO PLATO (ELEGIR UNO):</h3>
+      <ul>
+        <li><span data-zh="三鲜炒饭" data-es="Arroz frito 3 delicias" data-en="Fried rice 3 delicacies">Arroz frito 3 delicias</span></li>
+        <li><span data-zh="炒面" data-es="Tallarines fritos" data-en="Fried noodles">Tallarines fritos</span></li>
+      </ul>
+    </div>
+
+    <!-- 第三道 -->
+    <div class="package-box">
+      <h3 data-zh="第三道（任选其一）" data-es="TERCERO PLATO (ELEGIR UNO)" data-en="THIRD COURSE (CHOOSE ONE)">TERCERO PLATO (ELEGIR UNO):</h3>
+      <ul>
+        <li><span data-zh="杏仁鸡" data-es="Pollo con almendras" data-en="Chicken with almonds">Pollo con almendras</span></li>
+        <li><span data-zh="蚝油牛肉" data-es="Ternera con salsa de ostra" data-en="Beef with oyster sauce">Ternera con salsa de ostra</span></li>
+        <li><span data-zh="鸡肉球" data-es="Bola de pollo" data-en="Chicken ball">Bola de pollo</span></li>
+        <li><span data-zh="咕咾肉" data-es="Cerdo agridulce" data-en="Sweet and sour pork">Cerdo agridulce</span></li>
+        <li><span data-zh="竹笋蘑菇鸡" data-es="Pollo con bambú y setas" data-en="Chicken with bamboo and mushrooms">Pollo con bambú y setas</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== 特别套餐（保持你喜欢的横向并排） ==================== -->
+<h2 class="category" onclick="toggleCategory('menuEspecials', this)"><span class="cat" data-zh="特别套餐" data-es="Menús especiales" data-en="Special Menus">特别套餐</span> <span>▼</span></h2>
+<div class="menu-list" id="menuEspecials">
+  <div class="package-row">
+
+    <!-- 2人套餐 -->
+    <div class="package-box">
+      <h3 data-zh="2人特别套餐" data-es="Menú especial para 2 personas" data-en="Special menu for 2 people">Menú especial para 2 personas</h3>
+      <div class="price-big">26 €</div>
+      <ul>
+        <li><span data-zh="黄瓜沙拉" data-es="Ensalada de pepino" data-en="Cucumber salad">Ensalada de pepino</span></li>
+        <li><span data-zh="越南春卷 (4个)" data-es="Rollos de vietnamita(4u)" data-en="Vietnamese rolls (4pcs)">Rollos de vietnamita(4u)</span></li>
+        <li><span data-zh="蔬菜炒饭" data-es="Arroz con verdura" data-en="Vegetable rice">Arroz con verdura</span></li>
+        <li><span data-zh="铁板牛肉" data-es="Ternera tempayaki" data-en="Teppanyaki beef">Ternera tempayaki</span></li>
+        <li><span data-zh="炸鸭" data-es="Pato frito" data-en="Fried duck">Pato frito</span></li>
+      </ul>
+    </div>
+
+    <!-- 3人套餐 -->
+    <div class="package-box">
+      <h3 data-zh="3人特别套餐" data-es="Menú especial para 3 personas" data-en="Special menu for 3 people">Menú especial para 3 personas</h3>
+      <div class="price-big">39 €</div>
+      <ul>
+        <li><span data-zh="黄瓜沙拉" data-es="Ensalada de pepino" data-en="Cucumber salad">Ensalada de pepino</span></li>
+        <li><span data-zh="越南春卷 (6个)" data-es="Rollos de vietnamita(6u)" data-en="Vietnamese rolls (6pcs)">Rollos de vietnamita(6u)</span></li>
+        <li><span data-zh="蔬菜炒饭" data-es="Arroz con verdura" data-en="Vegetable rice">Arroz con verdura</span></li>
+        <li><span data-zh="铁板牛肉" data-es="Ternera tempayaki" data-en="Teppanyaki beef">Ternera tempayaki</span></li>
+        <li><span data-zh="炸鸭" data-es="Pato frito" data-en="Fried duck">Pato frito</span></li>
+        <li><span data-zh="炸虾" data-es="Gambas rebozados" data-en="Breaded prawns">Gambas rebozados</span></li>
+      </ul>
+    </div>
+
+    <!-- 4人套餐 -->
+    <div class="package-box">
+      <h3 data-zh="4人特别套餐" data-es="Menú especial para 4 personas" data-en="Special menu for 4 people">Menú especial para 4 personas</h3>
+      <div class="price-big">52 €</div>
+      <ul>
+        <li><span data-zh="黄瓜沙拉" data-es="Ensalada de pepino" data-en="Cucumber salad">Ensalada de pepino</span></li>
+        <li><span data-zh="越南春卷 (8个)" data-es="Rollos de vietnamita(8u)" data-en="Vietnamese rolls (8pcs)">Rollos de vietnamita(8u)</span></li>
+        <li><span data-zh="蔬菜炒饭" data-es="Arroz con verdura" data-en="Vegetable rice">Arroz con verdura</span></li>
+        <li><span data-zh="牛肉炒面" data-es="Tallarines fritos con carne de ternera" data-en="Fried noodles with beef">Tallarines fritos con carne de ternera</span></li>
+        <li><span data-zh="炸鸭" data-es="Pato frito" data-en="Fried duck">Pato frito</span></li>
+        <li><span data-zh="铁板牛肉" data-es="Ternera tempayaki" data-en="Teppanyaki beef">Ternera tempayaki</span></li>
+        <li><span data-zh="炸虾" data-es="Gambas rebozados" data-en="Breaded prawns">Gambas rebozados</span></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
 <h2 class="category" onclick="toggleCategory('bebidas', this)"><span class="cat" data-zh="饮料" data-es="Bebidas" data-en="Drinks">饮料</span> <span>▼</span></h2>
 <div class="menu-list" id="bebidas">
 
@@ -320,16 +470,98 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
   <div class="price">1,40 €</div>
   </div>
 
+</div>
+
+
+<h2 class="category" onclick="toggleCategory('redWine', this)"><span class="cat" data-zh="红葡萄酒" data-es="VINO TINTO" data-en="Red Wine">redWine</span> <span>▼</span></h2>
+<div class="menu-list" id="redWine">
+
   <div class="text-item">
-    <h3 data-zh="206.甘蔗汁" data-es="206.Caña" data-en="206.Sugarcane Juice">Agua
+    <h3 data-zh="215.Vino De La Casa" data-es="215.Vino De La Casa" data-en="215.Vino De La Casa">VinoDeLaCasa
     </h3>
-  <div class="price">2,40 €</div>
+  <div class="price">10,50 €</div>
   </div>
 
   <div class="text-item">
-    <h3 data-zh="207.Jarra Cerveza" data-es="207.Jarra Cerveza" data-en="207.Jarra Cerveza">Agua
+    <h3 data-zh="216.El Coto" data-es="216.El Coto" data-en="216.El Coto">ElCoto
+    </h3>
+  <div class="price">14,95 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="217.Cune" data-es="217.Cune" data-en="217.Cune">Cune
+    </h3>
+  <div class="price">14,95 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="219.Faustino" data-es="219.Faustino" data-en="219.Faustino">Faustino
+    </h3>
+  <div class="price">13,00 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="220.Marques De Casere" data-es="220.Marques De Casere" data-en="220.Marques De Casere">MarquesDeCasere
+    </h3>
+  <div class="price">15,50 €</div>
+  </div>
+
+</div>
+
+<h2 class="category" onclick="toggleCategory('roseWine', this)"><span class="cat" data-zh="玫瑰红葡萄酒" data-es="VINO ROSADO" data-en="Rose Wine">roseWine</span> <span>▼</span></h2>
+<div class="menu-list" id="roseWine">
+
+  <div class="text-item">
+    <h3 data-zh="221.Peñascal" data-es="221.Peñascal" data-en="221.Peñascal">Peñascal
+    </h3>
+  <div class="price">10,50 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="222.Lambrusco" data-es="222.Lambrusco" data-en="222.Lambrusco">Lambrusco
     </h3>
   <div class="price">9,50 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="223.Vino De La Casa" data-es="223.Vino De La Casa" data-en="223.Vino De La Casa">VinoDeLaCasa
+    </h3>
+  <div class="price">9,50 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="225.Marques De Casere" data-es="225.Marques De Casere" data-en="225.Marques De Casere">MarquesDeCasere
+    </h3>
+  <div class="price">12,80 €</div>
+  </div>
+
+</div>
+
+<h2 class="category" onclick="toggleCategory('whiteWine', this)"><span class="cat" data-zh="白葡萄酒" data-es="VINO BLANCO" data-en="White Wine">whiteWine</span> <span>▼</span></h2>
+<div class="menu-list" id="whiteWine">
+
+  <div class="text-item">
+    <h3 data-zh="226.本店干白" data-es="226.Vino De La Casa" data-en="226.Vino De La Casa">VinoDeLaCasa
+    </h3>
+  <div class="price">10,50 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="227.Marina Alta" data-es="227.Marina Alta" data-en="227.Marina Alta">MarinaAlta
+    </h3>
+  <div class="price">14,95 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="228.Blanc Pescador" data-es="228.Blanc Pescador" data-en="228.Blanc Pescador">BlancPescador
+    </h3>
+  <div class="price">14,95 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="229.Diamante" data-es="229.Diamante" data-en="229.Diamante">Diamante
+    </h3>
+  <div class="price">13,50 €</div>
   </div>
 
 </div>
