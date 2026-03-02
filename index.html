@@ -1,193 +1,422 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>今晚吃啥 - 炭火小馆</title>
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --card: #111;
-      --accent: #f59e0b;
-      --text: #e5e7eb;
-      --text2: #9ca3af;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.5;
-    }
-    .header {
-      background: linear-gradient(to bottom, #1f2937, #111827);
-      padding: 1.2rem 1rem;
-      text-align: center;
-    }
-    .header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.3rem;
-      font-weight: 700;
-    }
-    .header p {
-      font-size: 0.95rem;
-      color: var(--text2);
-    }
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-    .category {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin: 1.8rem 0 0.9rem;
-      padding-left: 0.7rem;
-      border-left: 4px solid var(--accent);
-    }
-    .item {
-      display: flex;
-      background: var(--card);
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      overflow: hidden;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
-    }
-    .item-img {
-      width: 110px;
-      height: 110px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    .item-body {
-      flex: 1;
-      padding: 0.9rem 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .name {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    .desc {
-      font-size: 0.86rem;
-      color: var(--text2);
-      margin-bottom: 0.4rem;
-      line-height: 1.4;
-    }
-    .price {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--accent);
-      align-self: flex-end;
-    }
-    .unit {
-      font-size: 0.82rem;
-      color: var(--text2);
-    }
-    .footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #6b7280;
-      font-size: 0.85rem;
-    }
-    @media (max-width: 480px) {
-      .item-img { width: 96px; height: 96px; }
-      .item-body { padding: 0.8rem; }
-      .name { font-size: 1.05rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Menu</title>
+
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#f7f7f7;margin:0;padding:0}
+header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22px;font-weight:bold}
+
+.category{padding:12px 16px;margin:12px 10px 6px;background:#fff;border-radius:8px;font-size:18px;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+.menu-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;padding:6px 10px 14px}
+
+.article,.text-item{background:#fff;border-radius:10px;padding:10px;box-shadow:0 2px 6px rgba(0,0,0,.08);display:flex;flex-direction:column;position:relative}
+
+.article img.main-img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+
+.allergens{display:flex;gap:4px;justify-content:flex-end;margin-top:6px}
+.allergen-icon,.allergens img{width:22px;height:22px}
+
+.article h3,.text-item h3{margin:6px 0 4px;font-size:14px}
+.price{color:#d32f2f;font-weight:bold;font-size:14px}
+
+.text-item{text-align:center}
+
+.lang-switch{position:fixed;right:10px;bottom:10px;background:#fff;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.15);display:flex;overflow:hidden}
+.lang-switch button{border:none;background:none;padding:8px 12px;font-size:13px;cursor:pointer}
+.lang-switch button.active{background:#d32f2f;color:#fff}
+
+.allergen-legend{padding:12px 16px;background:#fff;border-radius:8px;margin:12px 10px 6px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.allergen-legend h3{margin:0 0 10px 0;text-align:left;font-size:12px;color:#d32f2f;font-weight:bold}
+.allergen-legend #legend{display:flex;flex-wrap:wrap;gap:8px}
+.allergen-legend #legend span{display:inline-flex;align-items:center;margin:2px 6px 2px 0;font-size:13px;color:#444}
+.allergen-legend img{width:14px;height:14px;margin-right:4px;vertical-align:middle}
+</style>
 </head>
+
 <body>
 
-<div class="header">
-  <h1>萱萱小吃</h1>
-  <p>RESTAURANTE XUAN XUAN</p>
+<header id="pageTitle">萱萱小吃 · RESTAURANTE XUAN XUAN</header>
+
+
+<h2 class="category" onclick="toggleCategory('entrada', this)"><span class="cat" data-zh="前菜" data-es="Entradas" data-en="Starters">前菜</span> <span>▼</span></h2>
+<div class="menu-list" id="entrada">
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/eDc7kzv.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="1.春卷（大）" data-es="1.Rollo De Primavera(Grande)" data-en="1.Spring Roll(Big)">春卷</h3>
+    <div class="price">1,85 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/zTZ8R4l.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="2.春卷（小）" data-es="2.Rollitos De Vietnamita(Pequeño)" data-en="2.Vietnames Rolls (Small)">春卷（小）</h3>
+    <div class="price">4,15 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/261o7zp.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="3.中国沙拉" data-es="3.Ensalada China" data-en="3.Chinese Salad">春卷</h3>
+    <div class="price">5,65 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/L2A2qnZ.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="4.虾片" data-es="4.Pan De Gamba" data-en="4.Shrimp Cracker">春卷（小）</h3>
+    <div class="price">2,15 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/YDa822A.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="5.中国面包" data-es="5.Pan Chino" data-en="5.Chinese Bread">春卷</h3>
+    <div class="price">1,65 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/vRLqA3D.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="6.日本海藻沙拉" data-es="6.Ensalada De Alga Wakamen" data-en="6.Wakamen Seaweed Salad">春卷（小）</h3>
+    <div class="price">5,65 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/csJm7jd.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="7.拍黄瓜" data-es="7.Ensalada De Pepino" data-en="7.Cucumber Salad">春卷</h3>
+    <div class="price">5,15 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/gzeyb4l.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="8.皮蛋豆腐" data-es="8.Huevo En Conserva Con Tofu" data-en="8.Tofu With Preserved Eggs">春卷（小）</h3>
+    <div class="price">6,25 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/SPUz8GF.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="82.卤牛肉" data-es="82.Ensalada De Ternera" data-en="82.Cold Beef">春卷</h3>
+    <div class="price">8,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/tUhjTBA.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="83.口水鸡" data-es="83.Ensalada De Pollo" data-en="83.Cold Dish Of Chicken">春卷（小）</h3>
+    <div class="price">7,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/KZxuXrv.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="10.鱼翅汤" data-es="10.Sopa De Aleta De Tiburón" data-en="10.Shark Fin Soup">春卷</h3>
+    <div class="price">4,35 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/EIGi0IL.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="11.羊肉汤" data-es="11.Sopa De Cordero" data-en="11.Lamp Soup">春卷（小）</h3>
+    <div class="price">6,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/5axd9zh.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="12.馄饨汤" data-es="12.Sopa De Wuntun" data-en="12.Wuntun Soup">春卷</h3>
+    <div class="price">4,95 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/Y9AP3b7.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="13.酸辣汤" data-es="13.Sopa Agri-picante" data-en="13.Hot and Sour Soup">春卷（小）</h3>
+    <div class="price">4,35 €</div>
+  </div>
+
 </div>
 
-<div class="container">
+<h2 class="category" onclick="toggleCategory('principal', this)"><span class="cat" data-zh="米粉与意面" data-es="Arroz Tallarines y Pastas" data-en=" Rice Noodles & Italian Pasta">米粉与意面</span> <span>▼</span></h2>
+<div class="menu-list" id="principal">
 
-  <div class="category">Entrada</div>
-  <div class="item">
-    <img class="item-img" src="https://imgur.com/dRoDgFx" alt="春卷（大）" loading="lazy">
-    <div class="item-body">
-      <div>
-        <div class="name">春卷（大）</div>
-        <div class="desc">xxx</div>
-      </div>
-      <div class="price">1,85 <span class="unit">€</span></div>
-    </div>
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/16ip2iC.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="14.芥菜炒饭" data-es="14.Arroz Frito Con Verdura China" data-en="14.Fried Rice With Mustard">春卷</h3>
+    <div class="price">5,45 €</div>
   </div>
 
-  <div class="item">
-    <img class="item-img" src="https://imgur.com/HFUzs8b" alt="春卷（小）" loading="lazy">
-    <div class="item-body">
-      <div>
-        <div class="name">春卷（小）</div>
-        <div class="desc">油花均匀，大理石纹理，烤至5分熟最香</div>
-      </div>
-      <div class="price">98 <span class="unit">元/100g</span></div>
-    </div>
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/ERvbZQt.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="15.本店炒饭" data-es="15.Arroz Frito De La Casa" data-en="15.Fried Rice House">春卷（小）</h3>
+    <div class="price">5,85 €</div>
   </div>
 
-  <div class="category">海鲜撸串</div>
-  <div class="item">
-    <img class="item-img" src="https://imgur.com/L2A2qnZ" alt="虾片" loading="lazy">
-    <div class="item-body">
-      <div>
-        <div class="name">虾片</div>
-        <div class="desc">澳洲生蚝肥美多汁，蒜香扑鼻</div>
-      </div>
-      <div class="price">18 <span class="unit">元/只</span></div>
-    </div>
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/mBhB5AG.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="16.咖喱炒饭" data-es="16.Arroz Frito Con Sabor Curry" data-en="16.Curry Fried Rice">春卷</h3>
+    <div class="price">5,25 €</div>
   </div>
 
-  <div class="item">
-    <img class="item-img" src="https://imgur.com/csJm7jd" alt="拍黄瓜" loading="lazy">
-    <div class="item-body">
-      <div>
-        <div class="name">7. 拍黄瓜</div>
-        <div class="name">Ensalada De Pepino</div>
-        <div class="name">Cucumber Salad</div>
-        <div class="desc">xxx</div>
-      </div>
-      <div class="price">8 <span class="unit">元/只</span></div>
-    </div>
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/w1iWfb9.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="17.三鲜炒饭" data-es="17.Arroz Frito Tres Delicias" data-en="17.Three-Delicacy Fried Rice">春卷（小）</h3>
+    <div class="price">5,15 €</div>
   </div>
 
-  <div class="category">经典小食</div>
-  <div class="item">
-    <img class="item-img" src="https://i.imgur.com/3pL8xYt.jpeg" alt="烤茄子" loading="lazy">
-    <div class="item-body">
-      <div>
-        <div class="name">蒜香辣烤茄子</div>
-        <div class="desc">外焦里嫩，蒜蓉辣椒双倍满足</div>
-      </div>
-      <div class="price">16 <span class="unit">元/份</span></div>
-    </div>
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/CDpsj6H.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="18.牛肉盖饭" data-es="18.Ternera Con Salsa De Ostra Y Arroz Blanco" data-en="18.Rice With Beef">春卷</h3>
+    <div class="price">7,50 €</div>
   </div>
 
-  <div class="item">
-    <img class="item-img" src="https://i.imgur.com/nR5kJ2v.jpeg" alt="烤冷面" loading="lazy">
-    <div class="item-body">
-      <div>
-        <div class="name">韩式烤冷面</div>
-        <div class="desc">酱香浓郁，鸡蛋火腿齐全</div>
-      </div>
-      <div class="price">18 <span class="unit">元/份</span></div>
-    </div>
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/w1iWfb9.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="19.鸭肉盖饭" data-es="19.Pato Con Bambú Y Seta Y Arroz Blanco" data-en="19.Rice With Duck">春卷（小）</h3>
+    <div class="price">8,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/5b1hXPV.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="20.鸡肉盖饭" data-es="20.Pollo Frito Con Arroz Blanco" data-en="20.Rice With Chicken">春卷</h3>
+    <div class="price">7,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/kjkOjjp.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="21.虾盖饭" data-es="21.Gambas Fritas Con Arroz Blanco" data-en="21.Rice With Shrimps">春卷（小）</h3>
+    <div class="price">8,50 €</div>
+  </div>
+
+
+</div>
+
+<h2 class="category" onclick="toggleCategory('pollo', this)"><span class="cat" data-zh="鸡肉类" data-es="Pollo" data-en="Chicken">鸡肉类</span> <span>▼</span></h2>
+<div class="menu-list" id="pollo">
+  <div class="article" data-allergens="">
+    <img class="main-img" src="https://picsum.photos/400/300?random=5">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="可乐" data-es="Coca-Cola" data-en="Coca-Cola">可乐</h3>
+    <div class="price">2.00 €</div>
+  </div>
+</div>
+
+<h2 class="category" onclick="toggleCategory('bebidas', this)"><span class="cat" data-zh="饮料" data-es="Bebidas" data-en="Drinks">饮料</span> <span>▼</span></h2>
+<div class="menu-list" id="bebidas">
+
+  <div class="text-item">
+    <h3 data-zh="199.Sangría De La Casa" data-es="199.Sangría De La Casa" data-en="199.Sangría De La Casa">Sangría
+    </h3>
+  <div class="price">11,50 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="200.Cerveza 1/3" data-es="200.Cerveza 1/3" data-en="200.Cerveza 1/3">Cerveza
+    </h3>
+  <div class="price">2,60 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="201.Refrescos" data-es="201.Refrescos" data-en="201.Refrescos">Refrescos
+    </h3>
+  <div class="price">2,40 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="202.水（0.5升）" data-es="202.Agua 1/2 Litro" data-en="202.Water 1/2 Liter">Agua
+    </h3>
+  <div class="price">1,80 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="203.水（大）" data-es="203.Agua Grande" data-en="203.Water(Big)">Agua
+    </h3>
+  <div class="price">2,80 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="204.喜力啤酒" data-es="204.Heineken" data-en="204.Heineken">Agua
+    </h3>
+  <div class="price">2,80 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="205.中国啤酒" data-es="205.Cerveza China" data-en="205.Chinese Beer">Agua
+    </h3>
+  <div class="price">2,80 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="206.甘蔗汁" data-es="206.Caña" data-en="206.Sugarcane Juice">Agua
+    </h3>
+  <div class="price">2,40 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="207.Jarra Cerveza" data-es="207.Jarra Cerveza" data-en="207.Jarra Cerveza">Agua
+    </h3>
+  <div class="price">9,50 €</div>
   </div>
 
 </div>
 
-<div class="footer">
-  部分食材随市场波动，当日价格为准<br>
-  欢迎扫码咨询或加群获取当日特价
+<h2 class="category" onclick="toggleCategory('coffeeTea', this)"><span class="cat" data-zh="咖啡和茶" data-es="Café Y Té" data-en="Coffee And Tea">coffeeTea</span> <span>▼</span></h2>
+<div class="menu-list" id="coffeeTea">
+
+  <div class="text-item">
+    <h3 data-zh="208.Café Solo" data-es="208.Café Solo" data-en="208.Café Solo">CaféSolo
+    </h3>
+  <div class="price">1,30 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="209.Cortado" data-es="209.Cortado" data-en="209.Cortado">Cortado
+    </h3>
+  <div class="price">1,40 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="210.Bombón" data-es="210.Bombón" data-en="210.Bombón">Refrescos
+    </h3>
+  <div class="price">1,50 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="211.Café Con Leche" data-es="211.Café Con Leche" data-en="211.Café Con Leche">CaféConLeche
+    </h3>
+  <div class="price">1,60 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="212.Carajillo" data-es="212.Carajillo" data-en="212.Carajillo">Carajillo
+    </h3>
+  <div class="price">1,70 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="213.中国茶" data-es="213.Té Chino" data-en="213.Chinese Tea">ChineseTea
+    </h3>
+  <div class="price">2,00 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="214.Infusión" data-es="214.Infusión" data-en="214.Infusión">Infusión
+    </h3>
+  <div class="price">1,40 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="206.甘蔗汁" data-es="206.Caña" data-en="206.Sugarcane Juice">Agua
+    </h3>
+  <div class="price">2,40 €</div>
+  </div>
+
+  <div class="text-item">
+    <h3 data-zh="207.Jarra Cerveza" data-es="207.Jarra Cerveza" data-en="207.Jarra Cerveza">Agua
+    </h3>
+  <div class="price">9,50 €</div>
+  </div>
+
 </div>
+
+<!-- 过敏原图例移动到页面最底部 -->
+<div class="allergen-legend">
+  <h3 id="legendTitle" data-zh="过敏原图例" data-es="Leyenda de alérgenos" data-en="Allergen Legend">过敏原图例</h3>
+  <div id="legend"></div>
+</div>
+
+<div class="lang-switch">
+  <button onclick="setLang('zh')" class="active">中</button>
+  <button onclick="setLang('es')">ES</button>
+  <button onclick="setLang('en')">EN</button>
+</div>
+
+<script>
+const ALLERGEN_ICONS = {
+  gluten: 'allergens/gluten.png',
+  crustaceans: 'allergens/crustaceans.png',
+  eggs: 'allergens/eggs.png',
+  fish: 'allergens/fish.png',
+  peanuts: 'allergens/peanuts.png',
+  soy: 'allergens/soy.png',
+  milk: 'allergens/milk.png',
+  nuts: 'allergens/nuts.png',
+  celery: 'allergens/celery.png',
+  mustard: 'allergens/mustard.png',
+  sesame: 'allergens/sesame.png',
+  sulphites: 'allergens/sulphites.png',
+  lupin: 'allergens/lupin.png',
+  molluscs: 'allergens/molluscs.png'
+};
+
+const ALLERGEN_LABELS={
+  zh:{gluten:'含麸质',crustaceans:'甲壳类',eggs:'鸡蛋',fish:'鱼类',peanuts:'花生',soy:'大豆',milk:'乳制品',nuts:'坚果',celery:'芹菜',mustard:'芥末',sesame:'芝麻',sulphites:'亚硫酸盐',lupin:'羽扇豆',molluscs:'软体动物'},
+  es:{gluten:'Gluten',crustaceans:'Crustáceos',eggs:'Huevo',fish:'Pescado',peanuts:'Cacahuete',soy:'Soja',milk:'Leche',nuts:'Frutos secos',celery:'Apio',mustard:'Mostaza',sesame:'Sésamo',sulphites:'Sulfitos',lupin:'Altramuces',molluscs:'Moluscos'},
+  en:{gluten:'Gluten',crustaceans:'Crustaceans',eggs:'Eggs',fish:'Fish',peanuts:'Peanuts',soy:'Soy',milk:'Milk',nuts:'Nuts',celery:'Celery',mustard:'Mustard',sesame:'Sesame',sulphites:'Sulphites',lupin:'Lupin',molluscs:'Molluscs'}
+};
+
+let currentLang='zh';
+
+function renderAllergens(){
+  document.querySelectorAll('.article').forEach(article=>{
+    const box=article.querySelector('.allergens');
+    if(!box) return;
+    const list=(article.dataset.allergens||'').split(',').filter(Boolean);
+    box.innerHTML='';
+    list.forEach(key=>{
+      const img=document.createElement('img');
+      img.src=ALLERGEN_ICONS[key];
+      img.className='allergen-icon';
+      img.title=ALLERGEN_LABELS[currentLang][key];
+      box.appendChild(img);
+    });
+  });
+  renderLegend();
+}
+
+function renderLegend(){
+  const legend=document.getElementById('legend');
+  legend.innerHTML=Object.keys(ALLERGEN_ICONS).map(k=>
+    `<span><img src="${ALLERGEN_ICONS[k]}">${ALLERGEN_LABELS[currentLang][k]}</span>`
+  ).join('');
+}
+
+function setLang(lang){
+  currentLang=lang;
+  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.lang-switch button')[lang==='zh'?0:lang==='es'?1:2].classList.add('active');
+
+  document.getElementById('pageTitle').textContent={zh:'萱萱小吃',es:'RESTAURANTE XUAN XUAN',en:'RESTAURANT XUAN XUAN'}[lang];
+
+  document.querySelectorAll('[data-'+lang+']').forEach(el=>{el.textContent=el.dataset[lang];});
+  renderAllergens();
+}
+
+function toggleCategory(id,el){
+  const list=document.getElementById(id);
+  const arrow=el.querySelector('span:last-child');
+  if(list.style.display==='none'){list.style.display='grid';arrow.textContent='▼'}
+  else{list.style.display='none';arrow.textContent='▶'}
+}
+
+// 初始化（放在 body 最后，确保 DOM 已加载）
+setLang('zh');
+</script>
 
 </body>
 </html>
