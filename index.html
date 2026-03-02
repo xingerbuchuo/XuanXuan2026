@@ -6,10 +6,32 @@
 <title>Restaurant Menu</title>
 
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#f7f7f7;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#D8D8D8;margin:0;padding:0}
 header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22px;font-weight:bold}
 
-.category{padding:12px 16px;margin:12px 10px 6px;background:#fff;border-radius:8px;font-size:18px;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+/* ==================== 统一所有分类按钮样式 ==================== */
+.category{
+  padding:16px 20px;
+  margin:12px 10px 6px;
+  background:#111111 !important;     /* 黑色背景 */
+  color:#ff3333 !important;          /* 红色字体 */
+  font-size:24px !important;         /* 加大字体 */
+  font-weight:900 !important;        /* 超粗 */
+  border-radius:10px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.6) !important;
+  transition:all .2s;
+}
+.category:hover{
+  background:#1a1a1a !important;
+  box-shadow:0 6px 20px rgba(255,51,51,.3) !important;
+}
+.category span{
+  color:#ff3333 !important;          /* 箭头也保持红色 */
+}
 
 .menu-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;padding:6px 10px 14px}
 
@@ -261,18 +283,217 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
     <div class="price">8,50 €</div>
   </div>
 
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/gN2E0wJ.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="22.铁板方便面" data-es="22.Tallarines Tempanyaki" data-en="22.Sizzling Noodles">春卷</h3>
+    <div class="price">5,75 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/IwmGGs0.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="23.葱油乌冬面" data-es="23.Tallarines Udon Mezclado Con Cebollita, Aceite Y Salsa De Soja" data-en="23.Udon Noodle Mixed With Scallion，Oil And Soy Sauce">春卷（小）</h3>
+    <div class="price">5,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/alHSzLP.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="24.炒粉干" data-es="24.Fedeos Finos Fritos" data-en="24.Dry Fried Noodles">春卷（小）</h3>
+    <div class="price">5,95 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/FQPwybB.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="25.炒山粉面" data-es="25.Tallarines Frito Estilo QingTian" data-en="25.QingTian Style Fried Noodles">春卷</h3>
+    <div class="price">5,95 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/AEgf3se.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="26.拌面" data-es="26.Tallarines Mezclado Con Cebollita, Aceite Y Salsa De Soja" data-en="26.Noodles Mixed With Scallions, Oil And Soy Sauce">春卷（小）</h3>
+    <div class="price">6,35 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,eggs">
+    <img class="main-img" src="https://i.imgur.com/h7OWWkq.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="27.煮水饺" data-es="27.Empanadillas Chinas Al Vapor" data-en="27.Dumplings">春卷</h3>
+    <div class="price">6,25 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/v1MppIC.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="28.牛肉炒面" data-es="28.Tallarines Fritos Con Carne De Ternera" data-en="28.Beef Fried Noodles">春卷（小）</h3>
+    <div class="price">5,35 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/OI0sK0I.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="29.小笼包" data-es="29.Baos" data-en="29.Soup Dumplings">春卷（小）</h3>
+    <div class="price">4,35 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/pBA9EBG.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="30.锅贴" data-es="28.Empanadillas Chinas Fritas" data-en="30.Pan-fried Dumplings">春卷（小）</h3>
+    <div class="price">6,75 €</div>
+  </div>
 
 </div>
 
 <h2 class="category" onclick="toggleCategory('pollo', this)"><span class="cat" data-zh="鸡肉类" data-es="Pollo" data-en="Chicken">鸡肉类</span> <span>▼</span></h2>
 <div class="menu-list" id="pollo">
-  <div class="article" data-allergens="">
-    <img class="main-img" src="https://picsum.photos/400/300?random=5">
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/m3PVT5x.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="可乐" data-es="Coca-Cola" data-en="Coca-Cola">可乐</h3>
-    <div class="price">2.00 €</div>
+    <h3 class="article-name" data-zh="31.杏仁鸡" data-es="31.Pollo Con Almendras" data-en="31.Chicken Cubes With Almonds">春卷（小）</h3>
+    <div class="price">8,15 €</div>
   </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/e9RZbT8.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="32.双冬鸡" data-es="32.Pollo Con Bambú Y Setas" data-en="32.Sliced Chicken With Mushroom And Bamboo Shoots">春卷（小）</h3>
+    <div class="price">8,25 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/Ob2WEgm.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="33.宫爆鸡丁" data-es="33.Pollo Kongbao" data-en="33.Gong Bao Chicken">春卷（小）</h3>
+    <div class="price">8,25 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/RDkmq62.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="34.鸡球" data-es="34.Bola De Pollo" data-en="34.Fried Chicken Meatballs">春卷（小）</h3>
+    <div class="price">7,85 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/OlPmk1s.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="35.柠檬鸡" data-es="35.Pollo Limón" data-en="35.Lemon Chicken">春卷（小）</h3>
+    <div class="price">8,35 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/bopYal5.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="36.日本酱鸡串" data-es="36.Brocheta De Pollo Al Yakitori" data-en="36.Yakitori Chicken Brochette">春卷（小）</h3>
+    <div class="price">8,45 €</div>
+  </div>
+
 </div>
+
+<h2 class="category" onclick="toggleCategory('ternera', this)"><span class="cat" data-zh="牛肉类" data-es="Ternera" data-en="Beef">牛肉类</span> <span>▼</span></h2>
+<div class="menu-list" id="ternera">
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/z4uHRxG.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="37.铁板牛肉" data-es="37.Pollo Con Almendras" data-en="37.Chicken Cubes With Almonds">春卷（小）</h3>
+    <div class="price">8,95 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/iGDJ63X.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="38.辣子牛肉" data-es="38.Pollo Con Bambú Y Setas" data-en="38.Sliced Chicken With Mushroom And Bamboo Shoots">春卷（小）</h3>
+    <div class="price">8,55 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/RyhWXL5.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="39.双冬牛" data-es="39.Pollo Kongbao" data-en="39.Gong Bao Chicken">春卷（小）</h3>
+    <div class="price">8,65 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/LzZW6RK.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="40.耗油牛肉" data-es="40.Bola De Pollo" data-en="40.Fried Chicken Meatballs">春卷（小）</h3>
+    <div class="price">8,75 €</div>
+  </div>
+
+</div>
+
+<h2 class="category" onclick="toggleCategory('pato', this)"><span class="cat" data-zh="鸭肉类" data-es="Pato" data-en="Duck">鸭肉类</span> <span>▼</span></h2>
+<div class="menu-list" id="pato">
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/m3PVT5x.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="41.北京鸭" data-es="41.Pollo Con Almendras" data-en="41.Chicken Cubes With Almonds">春卷（小）</h3>
+    <div class="price">13,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/e9RZbT8.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="42.炸鸭" data-es="42.Pollo Con Bambú Y Setas" data-en="42.Sliced Chicken With Mushroom And Bamboo Shoots">春卷（小）</h3>
+    <div class="price">8,65 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/Ob2WEgm.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="43.双冬鸭" data-es="43.Pollo Kongbao" data-en="43.Gong Bao Chicken">春卷（小）</h3>
+    <div class="price">10,55 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/RDkmq62.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="44.桔子鸭" data-es="44.Bola De Pollo" data-en="44.Fried Chicken Meatballs">春卷（小）</h3>
+    <div class="price">10,50 €</div>
+  </div>
+
+</div>
+
+<h2 class="category" onclick="toggleCategory('cerdo', this)"><span class="cat" data-zh="猪肉类" data-es="Carne De Cerdo" data-en="Pork">猪肉类</span> <span>▼</span></h2>
+<div class="menu-list" id="cerdo">
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/AnalqUS.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="45.咕咾肉" data-es="45.Pollo Con Almendras" data-en="45.Chicken Cubes With Almonds">春卷（小）</h3>
+    <div class="price">8,15 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/Wsrnbz2.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="46.鱼香肉丝" data-es="46.Pollo Con Bambú Y Setas" data-en="46.Sliced Chicken With Mushroom And Bamboo Shoots">春卷（小）</h3>
+    <div class="price">8,15 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/ZUrkcDw.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="48.家常回锅肉" data-es="48.Pollo Kongbao" data-en="48.Gong Bao Chicken">春卷（小）</h3>
+    <div class="price">8,50 €</div>
+  </div>
+
+  <div class="article" data-allergens="gluten,soy">
+    <img class="main-img" src="https://i.imgur.com/iLEM9Pa.jpg">
+    <div class="allergens"></div>
+    <h3 class="article-name" data-zh="49.椒盐排骨" data-es="49.Bola De Pollo" data-en="49.Fried Chicken Meatballs">春卷（小）</h3>
+    <div class="price">8,50 €</div>
+  </div>
+
+</div>
+
 
 <!-- ==================== 当日菜单（现在和特别套餐完全一样的横向并排） ==================== -->
 <h2 class="category" onclick="toggleCategory('menuDia', this)"><span class="cat" data-zh="当日菜单" data-es="Menú del día" data-en="Daily Menu">当日菜单</span> 
@@ -652,4 +873,3 @@ setLang('es');
 
 </body>
 </html>
-
