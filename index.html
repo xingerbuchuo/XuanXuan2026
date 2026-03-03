@@ -11,6 +11,7 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 
 /* ==================== 统一所有分类按钮样式 ==================== */
 .category{
+  position:relative;                    /* 关键：用于绝对定位 subtitle */
   padding:16px 20px;
   margin:12px 10px 6px;
   background:#111111 !important;     /* 黑色背景 */
@@ -31,6 +32,18 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 }
 .category span{
   color:#ff3333 !important;          /* 箭头也保持红色 */
+}
+
+/* subtitle 放在按钮右下角 */
+.category .subtitle-btn{
+  position:absolute;
+  right:18px;
+  bottom:8px;
+  font-size:11px;           /* 极小，只要手机能看清即可 */
+  color:#ff9999;            /* 浅红色，不抢主标题 */
+  font-weight:400;
+  pointer-events:none;      /* 不影响点击按钮 */
+  line-height:1;
 }
 
 .menu-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;padding:6px 10px 14px}
@@ -634,11 +647,15 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 
 
 <!-- ==================== 当日菜单（现在和特别套餐完全一样的横向并排） ==================== -->
-<h2 class="category" onclick="toggleCategory('menuDia', this)"><span class="cat" data-zh="当日菜单 12€" data-es="Menú del día 12€" data-en="Daily Menu 12€"></span> 
-  
-  <p class="subtitle" data-zh="*包含饮料、甜品或咖啡" data-es="*Incluido: Bebida Postre o Café" data-en="*Included Drink, Dessert or Coffee"></p>
-  <p class="subtitle" data-zh="周一至周五午市（节假日除外）" data-es="Lunes a viernes al mediodía Excepto día festivo" data-en="Monday to Friday lunchtime Except holidays"></p>
-<span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('menuDia', this)">
+  <span class="cat" data-zh="当日菜单 12€" data-es="Menú del día 12€" data-en="Daily Menu 12€"></span> 
+  <span class="subtitle-btn" 
+        data-zh="周一至周五午市（节假日除外），且包含饮料、甜品或咖啡" 
+        data-es="Lunes a viernes al mediodía Excepto día festivo，y incluido: Bebida Postre o Café" 
+        data-en="Monday to Friday lunchtime Except holidays，and included Drink, Dessert or Coffee">
+  </span>   
+  <span>▼</span>
+</h2>
 <div class="menu-list" id="menuDia">
 
   <div class="package-row">
@@ -901,28 +918,28 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 <h2 class="category" onclick="toggleCategory('whiteWine', this)"><span class="cat" data-zh="白葡萄酒" data-es="VINO BLANCO" data-en="White Wine">whiteWine</span> <span>▼</span></h2>
 <div class="menu-list" id="whiteWine">
 
-  <div class="text-item">
-    <h3 data-zh="226.本店干白" data-es="226.Vino De La Casa" data-en="226.Vino De La Casa">VinoDeLaCasa
+  <div class="article" data-allergens="">
+    <h3 class="article-name" data-zh="226.本店干白" data-es="226.Vino De La Casa" data-en="226.Vino De La Casa">      
     </h3>
-  <div class="price">10,50 €</div>
+    <div class="price">10,50 €</div>
   </div>
 
-  <div class="text-item">
-    <h3 data-zh="227.Marina Alta" data-es="227.Marina Alta" data-en="227.Marina Alta">MarinaAlta
+  <div class="article" data-allergens="">
+    <h3 class="article-name" data-zh="227.Marina Alta" data-es="227.Marina Alta" data-en="227.Marina Alta">      
     </h3>
-  <div class="price">14,95 €</div>
+    <div class="price">14,95 €</div>
   </div>
 
-  <div class="text-item">
-    <h3 data-zh="228.Blanc Pescador" data-es="228.Blanc Pescador" data-en="228.Blanc Pescador">BlancPescador
+  <div class="article" data-allergens="">
+    <h3 class="article-name" data-zh="228.Blanc Pescador" data-es="228.Blanc Pescador" data-en="228.Blanc Pescador">      
     </h3>
-  <div class="price">14,95 €</div>
+    <div class="price">14,95 €</div>
   </div>
 
-  <div class="text-item">
-    <h3 data-zh="229.Diamante" data-es="229.Diamante" data-en="229.Diamante">Diamante
+  <div class="article" data-allergens="">
+    <h3 class="article-name" data-zh="229.Diamante" data-es="229.Diamante" data-en="229.Diamante">      
     </h3>
-  <div class="price">13,50 €</div>
+    <div class="price">13,50 €</div>
   </div>
 
 </div>
