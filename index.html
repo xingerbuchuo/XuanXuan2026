@@ -61,6 +61,17 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 .multi-name .en {
   font-size:11px;
   color:#555;
+}
+
+/* 分类按钮里的西语/英语与中文左对齐（不缩进） */
+.category .multi-name .es,
+.category .multi-name .en {
+  padding-left: 0 !important;
+}
+
+/* 菜品名称里的西语/英语向右缩进对齐（数字后） */
+.article-name .multi-name .es,
+.article-name .multi-name .en {
   padding-left: 1.5em;
 }
 /* 过敏原图例多语言样式 */
@@ -94,6 +105,30 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 .price{color:#d32f2f;text-align:right;font-weight:bold;font-size:14px}
 .menu_price{color:#d32f2f;font-weight:bold;font-size:22px}
 .text-item{text-align:center}
+.menu-item .name {flex: 1; position: relative; padding-right: 10px;}
+.menu-item .name::after {
+  content: ' ............................................................................................................................................................................................. ';
+  color: #ccc;
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: -1;
+}
+.menu-item .price {
+  white-space: nowrap;
+  color: #d32f2f;
+  font-weight: bold;
+  font-size: 14px;
+}
+.menu-list.text-only {
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  padding: 6px 10px 14px;
+}
 
 .lang-switch{display:none} /* 完全移除语言切换按钮 */
 /* 不使用语言切换按钮
@@ -160,6 +195,70 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
   color:#aaaaaa;
   text-align:center;
   margin:0px 0 0px;
+}
+
+/* header 中文大字体 */
+header .multi-name .zh {
+  font-size: 28px !important;
+  font-weight: bold;
+  color: #fff !important;
+}
+header .multi-name .es,
+header .multi-name .en {
+  font-size: 13px;
+  color: #ffdddd;
+}
+
+
+.menu-item {
+  display: flex;
+  align-items: baseline;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  margin-bottom: 12px;
+}
+
+.menu-item .name {
+  flex: 1;
+  position: relative;
+  padding-right: 10px;
+}
+
+.menu-item .name::after {
+  content: ' ............................................................................................................................................................................................. ';
+  color: #ccc;
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: -1;
+}
+
+.menu-item .price {
+  white-space: nowrap;
+  color: #d32f2f;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.menu-list.text-only {
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  padding: 6px 10px 14px;
+}
+
+.menu-list.text-only .menu-item {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu-list.text-only .menu-item h3 {
+  margin: 0;
 }
 
 </style>
@@ -1167,18 +1266,19 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 <h2 class="category" onclick="toggleCategory('menuDia', this)">
   <span class="cat">
     <div class="multi-name">
-      <span class="zh">当日菜单 12€</span>
-      <span class="es">Menú Del Día 12€</span>
-      <span class="en">Daily Menu 12€</span>
+      <span class="zh">当日菜单</span>
+      <span class="es">Menú Del Día</span>
+      <span class="en">Daily Menu</span>
     </div>
-  </span> 
+  </span>
+  <span class="price-big">12 €</span>
   <span class="subtitle-btn">
     <div class="multi-name">
       <span class="zh">周一至周五午市（节假日除外），且包含饮料、甜品或咖啡</span>
       <span class="es">Lunes a viernes al mediodía Excepto día festivo，y incluido: Bebida Postre o Café</span>
       <span class="en">Monday to Friday lunchtime Except holidays，and included Drink, Dessert or Coffee</span>
     </div>
-  </span>   
+  </div>
   <span>▼</span>
 </h2>
 <div class="menu-list" id="menuDia">
@@ -1554,105 +1654,105 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
     </div>
   </span> <span>▼</span>
 </h2>
-<div class="menu-list" id="bebidas">
+<div class="menu-list text-only" id="bebidas">
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">199.Sangría De La Casa</span>
         <span class="es">Sangría De La Casa</span>
         <span class="en">Sangría De La Casa</span>
       </div>
-    </h3>
-  <div class="price">11,50 €</div>
+    </div>
+    <div class="price">11,50 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">200.Cerveza 1/3</span>
         <span class="es">Cerveza 1/3</span>
         <span class="en">Cerveza 1/3</span>
       </div>
-    </h3>
-  <div class="price">2,60 €</div>
+    </div>
+    <div class="price">2,60 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">201.Refrescos</span>
         <span class="es">Refrescos</span>
         <span class="en">Refrescos</span>
       </div>
-    </h3>
-  <div class="price">2,40 €</div>
+    </div>
+    <div class="price">2,40 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">202.水（0.5升）</span>
         <span class="es">Agua 1/2 Litro</span>
         <span class="en">Water 1/2 Liter</span>
       </div>
-    </h3>
-  <div class="price">1,80 €</div>
+    </div>
+    <div class="price">1,80 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">203.水（大）</span>
         <span class="es">Agua Grande</span>
         <span class="en">Water(Big)</span>
       </div>
-    </h3>
-  <div class="price">2,80 €</div>
+    </div>
+    <div class="price">2,80 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">204.喜力啤酒</span>
         <span class="es">Heineken</span>
         <span class="en">Heineken</span>
       </div>
-    </h3>
-  <div class="price">2,80 €</div>
+    </div>
+    <div class="price">2,80 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">205.中国啤酒</span>
         <span class="es">Cerveza China</span>
         <span class="en">Chinese Beer</span>
       </div>
-    </h3>
-  <div class="price">2,80 €</div>
+    </div>
+    <div class="price">2,80 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">206.甘蔗汁</span>
         <span class="es">Caña</span>
         <span class="en">Sugarcane Juice</span>
       </div>
-    </h3>
-  <div class="price">2,40 €</div>
+    </div>
+    <div class="price">2,40 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">207.Jarra Cerveza</span>
         <span class="es">Jarra Cerveza</span>
         <span class="en">Jarra Cerveza</span>
       </div>
-    </h3>
-  <div class="price">9,50 €</div>
+    </div>
+    <div class="price">9,50 €</div>
   </div>
 
 </div>
@@ -1666,83 +1766,83 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
     </div>
   </span> <span>▼</span>
 </h2>
-<div class="menu-list" id="coffeeTea">
+<div class="menu-list text-only" id="coffeeTea">
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">208.Café Solo</span>
         <span class="es">Café Solo</span>
         <span class="en">Café Solo</span>
       </div>
-    </h3>
-  <div class="price">1,30 €</div>
+    </div>
+    <div class="price">1,30 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">209.Cortado</span>
         <span class="es">Cortado</span>
         <span class="en">Cortado</span>
       </div>
-    </h3>
-  <div class="price">1,40 €</div>
+    </div>
+    <div class="price">1,40 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">210.Bombón</span>
         <span class="es">Bombón</span>
         <span class="en">Bombón</span>
       </div>
-    </h3>
-  <div class="price">1,50 €</div>
+    </div>
+    <div class="price">1,50 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">211.Café Con Leche</span>
         <span class="es">Café Con Leche</span>
         <span class="en">Café Con Leche</span>
       </div>
-    </h3>
-  <div class="price">1,60 €</div>
+    </div>
+    <div class="price">1,60 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">212.Carajillo</span>
         <span class="es">Carajillo</span>
         <span class="en">Carajillo</span>
       </div>
-    </h3>
-  <div class="price">1,70 €</div>
+    </div>
+    <div class="price">1,70 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">213.中国茶</span>
         <span class="es">Té Chino</span>
         <span class="en">Chinese Tea</span>
       </div>
-    </h3>
-  <div class="price">2,00 €</div>
+    </div>
+    <div class="price">2,00 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">214.Infusión</span>
         <span class="es">Infusión</span>
         <span class="en">Infusión</span>
       </div>
-    </h3>
-  <div class="price">1,40 €</div>
+    </div>
+    <div class="price">1,40 €</div>
   </div>
 
 </div>
@@ -1757,61 +1857,61 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
     </div>
   </span> <span>▼</span>
 </h2>
-<div class="menu-list" id="redWine">
+<div class="menu-list text-only" id="redWine">
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">215.Vino De La Casa</span>
         <span class="es">Vino De La Casa</span>
         <span class="en">Vino De La Casa</span>
       </div>
-    </h3>
-  <div class="price">10,50 €</div>
+    </div>
+    <div class="price">10,50 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">216.El Coto</span>
         <span class="es">El Coto</span>
         <span class="en">El Coto</span>
       </div>
-    </h3>
-  <div class="price">14,95 €</div>
+    </div>
+    <div class="price">14,95 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">217.Cune</span>
         <span class="es">Cune</span>
         <span class="en">Cune</span>
       </div>
-    </h3>
-  <div class="price">14,95 €</div>
+    </div>
+    <div class="price">14,95 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">219.Faustino</span>
         <span class="es">Faustino</span>
         <span class="en">Faustino</span>
       </div>
-    </h3>
-  <div class="price">13,00 €</div>
+    </div>
+    <div class="price">13,00 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">220.Marques De Casere</span>
         <span class="es">Marques De Casere</span>
         <span class="en">Marques De Casere</span>
       </div>
-    </h3>
-  <div class="price">15,50 €</div>
+    </div>
+    <div class="price">15,50 €</div>
   </div>
 
 </div>
@@ -1825,50 +1925,50 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
     </div>
   </span> <span>▼</span>
 </h2>
-<div class="menu-list" id="roseWine">
+<div class="menu-list text-only" id="roseWine">
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">221.Peñascal</span>
         <span class="es">Peñascal</span>
         <span class="en">Peñascal</span>
       </div>
-    </h3>
-  <div class="price">10,50 €</div>
+    </div>
+    <div class="price">10,50 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">222.Lambrusco</span>
         <span class="es">Lambrusco</span>
         <span class="en">Lambrusco</span>
       </div>
-    </h3>
-  <div class="price">9,50 €</div>
+    </div>
+    <div class="price">9,50 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">223.Vino De La Casa</span>
         <span class="es">Vino De La Casa</span>
         <span class="en">Vino De La Casa</span>
       </div>
-    </h3>
-  <div class="price">9,50 €</div>
+    </div>
+    <div class="price">9,50 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">225.Marques De Casere</span>
         <span class="es">Marques De Casere</span>
         <span class="en">Marques De Casere</span>
       </div>
-    </h3>
-  <div class="price">12,80 €</div>
+    </div>
+    <div class="price">12,80 €</div>
   </div>
 
 </div>
@@ -1882,49 +1982,49 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
     </div>
   </span> <span>▼</span>
 </h2>
-<div class="menu-list" id="whiteWine">
+<div class="menu-list text-only" id="whiteWine">
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">226.本店干白</span>
         <span class="es">Vino De La Casa</span>
         <span class="en">Vino De La Casa</span>
       </div>
-    </h3>
+    </div>
     <div class="price">10,50 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">227.Marina Alta</span>
         <span class="es">Marina Alta</span>
         <span class="en">Marina Alta</span>
       </div>
-    </h3>
+    </div>
     <div class="price">14,95 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">228.Blanc Pescador</span>
         <span class="es">Blanc Pescador</span>
         <span class="en">Blanc Pescador</span>
       </div>
-    </h3>
+    </div>
     <div class="price">14,95 €</div>
   </div>
 
-  <div class="article" data-allergens="">
-    <h3 class="article-name">
+  <div class="menu-item" data-allergens="">
+    <div class="name">
       <div class="multi-name">
         <span class="zh">229.Diamante</span>
         <span class="es">Diamante</span>
         <span class="en">Diamante</span>
       </div>
-    </h3>
+    </div>
     <div class="price">13,50 €</div>
   </div>
 
