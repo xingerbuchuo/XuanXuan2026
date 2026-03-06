@@ -45,6 +45,41 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
   pointer-events:none;      /* 不影响点击按钮 */
   line-height:1;
 }
+/* 多语言显示样式（美观、紧凑、手机友好） */
+.multi-name {
+  display:flex;
+  flex-direction:column;
+  gap:0px;
+  line-height:1.1;
+}
+.multi-name .zh {
+  font-weight:bold;
+  color:#d32f2f;
+  font-size:14px;
+}
+.multi-name .es,
+.multi-name .en {
+  font-size:11px;
+  color:#555;
+  padding-left: 1.5em;
+}
+/* 过敏原图例多语言样式 */
+.multi-allergen {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:5px 12px 5px 0;
+  vertical-align:middle;
+}
+.multi-text {
+  display:flex;
+  flex-direction:column;
+  font-size:11px;
+  line-height:1.2;
+}
+.multi-text .zh {font-weight:bold; color:#d32f2f;}
+.multi-text .es,
+.multi-text .en {color:#777;}
 
 .menu-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;padding:6px 10px 14px}
 
@@ -60,9 +95,13 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 .menu_price{color:#d32f2f;font-weight:bold;font-size:22px}
 .text-item{text-align:center}
 
+.lang-switch{display:none} /* 完全移除语言切换按钮 */
+/* 不使用语言切换按钮
 .lang-switch{position:fixed;right:10px;bottom:10px;background:#fff;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.15);display:flex;overflow:hidden}
+*/
 .lang-switch button{border:none;background:none;padding:8px 12px;font-size:13px;cursor:pointer}
 .lang-switch button.active{background:#d32f2f;color:#fff}
+
 
 .allergen-legend{padding:12px 16px;background:#fff;border-radius:8px;margin:12px 10px 6px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
 .allergen-legend h3{margin:0 0 10px 0;text-align:left;font-size:12px;color:#d32f2f;font-weight:bold}
@@ -92,11 +131,7 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
   font-weight:bold;
   font-size:17px;
 }
-.package-box ul{
-  list-style:none;
-  padding:0;
-  margin:0;
-}
+.package-box ul{ list-style:none; padding:0; margin:0; }
 .package-box li{
   padding:9px 0;
   border-bottom:1px solid #333333;
@@ -132,514 +167,996 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 
 <body>
 
-<header id="pageTitle">萱萱小吃 · RESTAURANTE XUAN XUAN</header>
+<header id="pageTitle">
+  <div class="multi-name">
+    <span class="zh">萱萱小吃</span>
+    <span class="es">RESTAURANTE XUAN XUAN</span>
+    <span class="en">RESTAURANT XUAN XUAN</span>
+  </div>
+</header>
 
 
-<h2 class="category" onclick="toggleCategory('entrada', this)"><span class="cat" data-zh="前菜" data-es="Entradas" data-en="Starters"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('entrada', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">前菜</span>
+      <span class="es">Entradas</span>
+      <span class="en">Starters</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="entrada">
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/eDc7kzv.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="1.春卷（大）" data-es="1.Rollo De Primavera(Grande)" data-en="1.Spring Roll(Big)"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">1.春卷（大）</span>
+        <span class="es">Rollo De Primavera(Grande)</span>
+        <span class="en">Spring Roll(Big)</span>
+      </div>
+    </h3>
     <div class="price">1,85 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/zTZ8R4l.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="2.春卷（小）" data-es="2.Rollitos De Vietnamita(Pequeño)" data-en="2.Vietnames Rolls (Small)"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">2.春卷（小）</span>
+        <span class="es">Rollitos De Vietnamita(Pequeño)</span>
+        <span class="en">Vietnames Rolls (Small)</span>
+      </div>
+    </h3>
     <div class="price">4,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/261o7zp.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="3.中国沙拉" data-es="3.Ensalada China" data-en="3.Chinese Salad"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">3.中国沙拉</span>
+        <span class="es">Ensalada China</span>
+        <span class="en">Chinese Salad</span>
+      </div>
+    </h3>
     <div class="price">5,65 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/L2A2qnZ.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="4.虾片" data-es="4.Pan De Gamba" data-en="4.Shrimp Cracker"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">4.虾片</span>
+        <span class="es">Pan De Gamba</span>
+        <span class="en">Shrimp Cracker</span>
+      </div>
+    </h3>
     <div class="price">2,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/YDa822A.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="5.中国面包" data-es="5.Pan Chino" data-en="5.Chinese Bread"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">5.中国面包</span>
+        <span class="es">Pan Chino</span>
+        <span class="en">Chinese Bread</span>
+      </div>
+    </h3>
     <div class="price">1,65 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/vRLqA3D.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="6.日本海藻沙拉" data-es="6.Ensalada De Alga Wakamen" data-en="6.Wakamen Seaweed Salad"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">6.日本海藻沙拉</span>
+        <span class="es">Ensalada De Alga Wakamen</span>
+        <span class="en">Wakamen Seaweed Salad</span>
+      </div>
+    </h3>
     <div class="price">5,65 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/csJm7jd.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="7.拍黄瓜" data-es="7.Ensalada De Pepino" data-en="7.Cucumber Salad"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">7.拍黄瓜</span>
+        <span class="es">Ensalada De Pepino</span>
+        <span class="en">Cucumber Salad</span>
+      </div>
+    </h3>
     <div class="price">5,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/gzeyb4l.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="8.皮蛋豆腐" data-es="8.Huevo En Conserva Con Tofu" data-en="8.Tofu With Preserved Eggs"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">8.皮蛋豆腐</span>
+        <span class="es">Huevo En Conserva Con Tofu</span>
+        <span class="en">Tofu With Preserved Eggs</span>
+      </div>
+    </h3>
     <div class="price">6,25 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/SPUz8GF.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="82.卤牛肉" data-es="82.Ensalada De Ternera" data-en="82.Cold Beef"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">82.卤牛肉</span>
+        <span class="es">Ensalada De Ternera</span>
+        <span class="en">Cold Beef</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/tUhjTBA.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="83.口水鸡" data-es="83.Ensalada De Pollo" data-en="83.Cold Dish Of Chicken"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">83.口水鸡</span>
+        <span class="es">Ensalada De Pollo</span>
+        <span class="en">Cold Dish Of Chicken</span>
+      </div>
+    </h3>
     <div class="price">7,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/KZxuXrv.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="10.鱼翅汤" data-es="10.Sopa De Aleta De Tiburón" data-en="10.Shark Fin Soup"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">10.鱼翅汤</span>
+        <span class="es">Sopa De Aleta De Tiburón</span>
+        <span class="en">Shark Fin Soup</span>
+      </div>
+    </h3>
     <div class="price">4,35 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/EIGi0IL.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="11.羊肉汤" data-es="11.Sopa De Cordero" data-en="11.Lamp Soup"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">11.羊肉汤</span>
+        <span class="es">Sopa De Cordero</span>
+        <span class="en">Lamp Soup</span>
+      </div>
+    </h3>
     <div class="price">6,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/5axd9zh.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="12.馄饨汤" data-es="12.Sopa De Wuntun" data-en="12.Wuntun Soup"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">12.馄饨汤</span>
+        <span class="es">Sopa De Wuntun</span>
+        <span class="en">Wuntun Soup</span>
+      </div>
+    </h3>
     <div class="price">4,95 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/Y9AP3b7.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="13.酸辣汤" data-es="13.Sopa Agri-picante" data-en="13.Hot and Sour Soup"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">13.酸辣汤</span>
+        <span class="es">Sopa Agri-picante</span>
+        <span class="en">Hot and Sour Soup</span>
+      </div>
+    </h3>
     <div class="price">4,35 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('principal', this)"><span class="cat" data-zh="米粉与意面" data-es="Arroz Tallarines y Pastas" data-en=" Rice Noodles & Italian Pasta"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('principal', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">米粉与意面</span>
+      <span class="es">Arroz Tallarines y Pastas</span>
+      <span class="en"> Rice Noodles & Italian Pasta</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="principal">
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/16ip2iC.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="14.芥菜炒饭" data-es="14.Arroz Frito Con Verdura China" data-en="14.Fried Rice With Mustard"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">14.芥菜炒饭</span>
+        <span class="es">Arroz Frito Con Verdura China</span>
+        <span class="en">Fried Rice With Mustard</span>
+      </div>
+    </h3>
     <div class="price">5,45 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/ERvbZQt.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="15.本店炒饭" data-es="15.Arroz Frito De La Casa" data-en="15.Fried Rice House"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">15.本店炒饭</span>
+        <span class="es">Arroz Frito De La Casa</span>
+        <span class="en">Fried Rice House</span>
+      </div>
+    </h3>
     <div class="price">5,85 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/mBhB5AG.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="16.咖喱炒饭" data-es="16.Arroz Frito Con Sabor Curry" data-en="16.Curry Fried Rice"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">16.咖喱炒饭</span>
+        <span class="es">Arroz Frito Con Sabor Curry</span>
+        <span class="en">Curry Fried Rice</span>
+      </div>
+    </h3>
     <div class="price">5,25 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/w1iWfb9.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="17.三鲜炒饭" data-es="17.Arroz Frito Tres Delicias" data-en="17.Three-Delicacy Fried Rice"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">17.三鲜炒饭</span>
+        <span class="es">Arroz Frito Tres Delicias</span>
+        <span class="en">Three-Delicacy Fried Rice</span>
+      </div>
+    </h3>
     <div class="price">5,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/CDpsj6H.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="18.牛肉盖饭" data-es="18.Ternera Con Salsa De Ostra Y Arroz Blanco" data-en="18.Rice With Beef"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">18.牛肉盖饭</span>
+        <span class="es">Ternera Con Salsa De Ostra Y Arroz Blanco</span>
+        <span class="en">Rice With Beef</span>
+      </div>
+    </h3>
     <div class="price">7,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/w1iWfb9.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="19.鸭肉盖饭" data-es="19.Pato Con Bambú Y Seta Y Arroz Blanco" data-en="19.Rice With Duck"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">19.鸭肉盖饭</span>
+        <span class="es">Pato Con Bambú Y Seta Y Arroz Blanco</span>
+        <span class="en">Rice With Duck</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/5b1hXPV.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="20.鸡肉盖饭" data-es="20.Pollo Frito Con Arroz Blanco" data-en="20.Rice With Chicken"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">20.鸡肉盖饭</span>
+        <span class="es">Pollo Frito Con Arroz Blanco</span>
+        <span class="en">Rice With Chicken</span>
+      </div>
+    </h3>
     <div class="price">7,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/kjkOjjp.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="21.虾盖饭" data-es="21.Gambas Fritas Con Arroz Blanco" data-en="21.Rice With Shrimps"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">21.虾盖饭</span>
+        <span class="es">Gambas Fritas Con Arroz Blanco</span>
+        <span class="en">Rice With Shrimps</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/gN2E0wJ.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="22.铁板方便面" data-es="22.Tallarines Tempanyaki" data-en="22.Sizzling Noodles"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">22.铁板方便面</span>
+        <span class="es">Tallarines Tempanyaki</span>
+        <span class="en">Sizzling Noodles</span>
+      </div>
+    </h3>
     <div class="price">5,75 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/IwmGGs0.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="23.葱油乌冬面" data-es="23.Tallarines Udon Mezclado Con Cebollita, Aceite Y Salsa De Soja" data-en="23.Udon Noodle Mixed With Scallion，Oil And Soy Sauce"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">23.葱油乌冬面</span>
+        <span class="es">Tallarines Udon Mezclado Con Cebollita, Aceite Y Salsa De Soja</span>
+        <span class="en">Udon Noodle Mixed With Scallion，Oil And Soy Sauce</span>
+      </div>
+    </h3>
     <div class="price">5,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/alHSzLP.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="24.炒粉干" data-es="24.Fedeos Finos Fritos" data-en="24.Dry Fried Noodles"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">24.炒粉干</span>
+        <span class="es">Fedeos Finos Fritos</span>
+        <span class="en">Dry Fried Noodles</span>
+      </div>
+    </h3>
     <div class="price">5,95 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/FQPwybB.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="25.炒山粉面" data-es="25.Tallarines Frito Estilo QingTian" data-en="25.QingTian Style Fried Noodles"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">25.炒山粉面</span>
+        <span class="es">Tallarines Frito Estilo QingTian</span>
+        <span class="en">QingTian Style Fried Noodles</span>
+      </div>
+    </h3>
     <div class="price">5,95 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/AEgf3se.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="26.拌面" data-es="26.Tallarines Mezclado Con Cebollita, Aceite Y Salsa De Soja" data-en="26.Noodles Mixed With Scallions, Oil And Soy Sauce"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">26.拌面</span>
+        <span class="es">Tallarines Mezclado Con Cebollita, Aceite Y Salsa De Soja</span>
+        <span class="en">Noodles Mixed With Scallions, Oil And Soy Sauce</span>
+      </div>
+    </h3>
     <div class="price">6,35 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,eggs">
     <img class="main-img" src="https://i.imgur.com/h7OWWkq.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="27.煮水饺" data-es="27.Empanadillas Chinas Al Vapor" data-en="27.Dumplings"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">27.煮水饺</span>
+        <span class="es">Empanadillas Chinas Al Vapor</span>
+        <span class="en">Dumplings</span>
+      </div>
+    </h3>
     <div class="price">6,25 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/v1MppIC.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="28.牛肉炒面" data-es="28.Tallarines Fritos Con Carne De Ternera" data-en="28.Beef Fried Noodles"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">28.牛肉炒面</span>
+        <span class="es">Tallarines Fritos Con Carne De Ternera</span>
+        <span class="en">Beef Fried Noodles</span>
+      </div>
+    </h3>
     <div class="price">5,35 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/OI0sK0I.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="29.小笼包" data-es="29.Baos" data-en="29.Soup Dumplings"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">29.小笼包</span>
+        <span class="es">Baos</span>
+        <span class="en">Soup Dumplings</span>
+      </div>
+    </h3>
     <div class="price">4,35 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/pBA9EBG.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="30.锅贴" data-es="28.Empanadillas Chinas Fritas" data-en="30.Pan-fried Dumplings"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">30.锅贴</span>
+        <span class="es">Empanadillas Chinas Fritas</span>
+        <span class="en">Pan-fried Dumplings</span>
+      </div>
+    </h3>
     <div class="price">6,75 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('pollo', this)"><span class="cat" data-zh="鸡肉类" data-es="Pollo" data-en="Chicken"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('pollo', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">鸡肉类</span>
+      <span class="es">Pollo</span>
+      <span class="en">Chicken</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="pollo">
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/m3PVT5x.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="31.杏仁鸡" data-es="31.Pollo Con Almendras" data-en="31.Chicken Cubes With Almonds"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">31.杏仁鸡</span>
+        <span class="es">Pollo Con Almendras</span>
+        <span class="en">Chicken Cubes With Almonds</span>
+      </div>
+    </h3>
     <div class="price">8,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/e9RZbT8.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="32.双冬鸡" data-es="32.Pollo Con Bambú Y Setas" data-en="32.Sliced Chicken With Mushroom And Bamboo Shoots"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">32.双冬鸡</span>
+        <span class="es">Pollo Con Bambú Y Setas</span>
+        <span class="en">Sliced Chicken With Mushroom And Bamboo Shoots</span>
+      </div>
+    </h3>
     <div class="price">8,25 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/Ob2WEgm.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="33.宫爆鸡丁" data-es="33.Pollo Kongbao" data-en="33.Gong Bao Chicken"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">33.宫爆鸡丁</span>
+        <span class="es">Pollo Kongbao</span>
+        <span class="en">Gong Bao Chicken</span>
+      </div>
+    </h3>
     <div class="price">8,25 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/RDkmq62.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="34.鸡球" data-es="34.Bola De Pollo" data-en="34.Fried Chicken Meatballs"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">34.鸡球</span>
+        <span class="es">Bola De Pollo</span>
+        <span class="en">Fried Chicken Meatballs</span>
+      </div>
+    </h3>
     <div class="price">7,85 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/OlPmk1s.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="35.柠檬鸡" data-es="35.Pollo Limón" data-en="35.Lemon Chicken"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">35.柠檬鸡</span>
+        <span class="es">Pollo Limón</span>
+        <span class="en">Lemon Chicken</span>
+      </div>
+    </h3>
     <div class="price">8,35 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/bopYal5.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="36.日本酱鸡串" data-es="36.Brocheta De Pollo Al Yakitori" data-en="36.Yakitori Chicken Brochette"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">36.日本酱鸡串</span>
+        <span class="es">Brocheta De Pollo Al Yakitori</span>
+        <span class="en">Yakitori Chicken Brochette</span>
+      </div>
+    </h3>
     <div class="price">8,45 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('ternera', this)"><span class="cat" data-zh="牛肉类" data-es="Ternera" data-en="Beef"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('ternera', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">牛肉类</span>
+      <span class="es">Ternera</span>
+      <span class="en">Beef</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="ternera">
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/z4uHRxG.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="37.铁板牛肉" data-es="37.Carne De Ternera Tempayaki" data-en="37.Sizzling Beef"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">37.铁板牛肉</span>
+        <span class="es">Carne De Ternera Tempayaki</span>
+        <span class="en">Sizzling Beef</span>
+      </div>
+    </h3>
     <div class="price">8,95 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/iGDJ63X.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="38.辣子牛肉" data-es="38.Ternera Picante" data-en="38.Sliced Beef With Pepper"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">38.辣子牛肉</span>
+        <span class="es">Ternera Picante</span>
+        <span class="en">Sliced Beef With Pepper</span>
+      </div>
+    </h3>
     <div class="price">8,55 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/RyhWXL5.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="39.双冬牛" data-es="39.Ternera Con Bambú Y Setas" data-en="39.Sliced Beef With Mushroom And Bamboo Shoots"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">39.双冬牛</span>
+        <span class="es">Ternera Con Bambú Y Setas</span>
+        <span class="en">Sliced Beef With Mushroom And Bamboo Shoots</span>
+      </div>
+    </h3>
     <div class="price">8,65 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/LzZW6RK.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="40.耗油牛肉" data-es="40.Ternera Con Salsa De Ostra" data-en="40.Oyster Sauce Beef"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">40.耗油牛肉</span>
+        <span class="es">Ternera Con Salsa De Ostra</span>
+        <span class="en">Oyster Sauce Beef</span>
+      </div>
+    </h3>
     <div class="price">8,75 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('pato', this)"><span class="cat" data-zh="鸭肉类" data-es="Pato" data-en="Duck"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('pato', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">鸭肉类</span>
+      <span class="es">Pato</span>
+      <span class="en">Duck</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="pato">
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/G9LUofh.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="41.北京鸭" data-es="41.Pato Pekin" data-en="41.Pekin Duck"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">41.北京鸭</span>
+        <span class="es">Pato Pekin</span>
+        <span class="en">Pekin Duck</span>
+      </div>
+    </h3>
     <div class="price">13,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/JHNn0GF.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="42.炸鸭" data-es="42.Pato Frito" data-en="42.Fried Duck"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">42.炸鸭</span>
+        <span class="es">Pato Frito</span>
+        <span class="en">Fried Duck</span>
+      </div>
+    </h3>
     <div class="price">8,65 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/JKvgyjC.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="43.双冬鸭" data-es="43.Pato Con Bambú Y Setas" data-en="43.Sliced Duck With Mushroom And Bamboo Shoots"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">43.双冬鸭</span>
+        <span class="es">Pato Con Bambú Y Setas</span>
+        <span class="en">Sliced Duck With Mushroom And Bamboo Shoots</span>
+      </div>
+    </h3>
     <div class="price">10,55 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/LygH5Jg.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="44.桔子鸭" data-es="44.Pato A La Naranja" data-en="44.Orange Duck"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">44.桔子鸭</span>
+        <span class="es">Pato A La Naranja</span>
+        <span class="en">Orange Duck</span>
+      </div>
+    </h3>
     <div class="price">10,50 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('cerdo', this)"><span class="cat" data-zh="猪肉类" data-es="Carne De Cerdo" data-en="Pork"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('cerdo', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">猪肉类</span>
+      <span class="es">Carne De Cerdo</span>
+      <span class="en">Pork</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="cerdo">
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/AnalqUS.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="45.咕咾肉" data-es="45.Cerdo Agridulce" data-en="45.Sweet Sauce Pork"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">45.咕咾肉</span>
+        <span class="es">Cerdo Agridulce</span>
+        <span class="en">Sweet Sauce Pork</span>
+      </div>
+    </h3>
     <div class="price">8,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/Wsrnbz2.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="46.鱼香肉丝" data-es="46.Cerdo Rallado Con Salsa De Chili Y Dulce" data-en="46.Shredded Pork With Garlic Sauce"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">46.鱼香肉丝</span>
+        <span class="es">Cerdo Rallado Con Salsa De Chili Y Dulce</span>
+        <span class="en">Shredded Pork With Garlic Sauce</span>
+      </div>
+    </h3>
     <div class="price">8,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/ZUrkcDw.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="48.家常回锅肉" data-es="48.Panceta De La Casa" data-en="48.Special Pork Of House"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">48.家常回锅肉</span>
+        <span class="es">Panceta De La Casa</span>
+        <span class="en">Special Pork Of House</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/iLEM9Pa.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="49.椒盐排骨" data-es="49.Costilla Frito Con Sal Y Pimiento Negro" data-en="49.Fried Rib With Salt And Black Pepper"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">49.椒盐排骨</span>
+        <span class="es">Costilla Frito Con Sal Y Pimiento Negro</span>
+        <span class="en">Fried Rib With Salt And Black Pepper</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('special', this)"><span class="cat" data-zh="特色菜" data-es="Platos Especiales" data-en="Special Dishes"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('special', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">特色菜</span>
+      <span class="es">Platos Especiales</span>
+      <span class="en">Special Dishes</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="special">
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/7NjVq9Y.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="50.椒盐虾" data-es="50.Langostinos Al Sal Y Pimienta" data-en="50.Salad Pepper Shrimps"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">50.椒盐虾</span>
+        <span class="es">Langostinos Al Sal Y Pimienta</span>
+        <span class="en">Salad Pepper Shrimps</span>
+      </div>
+    </h3>
     <div class="price">9,95 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/IDRLB6b.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="51.咖喱虾" data-es="51.Gambas Con Sabor Curry" data-en="51.Curry Shrimp"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">51.咖喱虾</span>
+        <span class="es">Gambas Con Sabor Curry</span>
+        <span class="en">Curry Shrimp</span>
+      </div>
+    </h3>
     <div class="price">9,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/8qUEcpi.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="52.双冬虾" data-es="52.Gambas Con Bambú Y Setas" data-en="52.Shrimps With Mushroom And Bamboo Shoots"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">52.双冬虾</span>
+        <span class="es">Gambas Con Bambú Y Setas</span>
+        <span class="en">Shrimps With Mushroom And Bamboo Shoots</span>
+      </div>
+    </h3>
     <div class="price">9,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/1Wvmm46.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="53.炸大虾" data-es="53.Gambas Rebozadas" data-en="53.Fried Shrimp"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">53.炸大虾</span>
+        <span class="es">Gambas Rebozadas</span>
+        <span class="en">Fried Shrimp</span>
+      </div>
+    </h3>
     <div class="price">9,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/uyCsI5j.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="54.辣子鱿鱼" data-es="54.Sepia Picante" data-en="54.Squid Fried With Chili And Scallion"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">54.辣子鱿鱼</span>
+        <span class="es">Sepia Picante</span>
+        <span class="en">Squid Fried With Chili And Scallion</span>
+      </div>
+    </h3>
     <div class="price">12,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/n0ElLof.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="55.葱油鲈鱼" data-es="55.Lubina A La Salsa De Puerro" data-en="55.Sea Bass To The Leek Sauce"></h3>
-    <div class="price" data-zh="时价" data-es="Precio Segun Mercado" data-en="Market Price"></div>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">55.葱油鲈鱼</span>
+        <span class="es">Lubina A La Salsa De Puerro</span>
+        <span class="en">Sea Bass To The Leek Sauce</span>
+      </div>
+    </h3>
+    <div class="price">
+      <div class="multi-name">
+        <span class="zh">时价</span>
+        <span class="es">Precio Segun Mercado</span>
+        <span class="en">Market Price</span>
+      </div>
+    </div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/m0AWPaV.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="56.红烧日本豆腐" data-es="56.Tofu Japonés Braseado" data-en="56.Braised Japanese Tofu"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">56.红烧日本豆腐</span>
+        <span class="es">Tofu Japonés Braseado</span>
+        <span class="en">Braised Japanese Tofu</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/NYehA9a.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="57.麻婆豆腐" data-es="57.El Tofu Mapo Picante" data-en="57.Hot Mapo Tofu"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">57.麻婆豆腐</span>
+        <span class="es">El Tofu Mapo Picante</span>
+        <span class="en">Hot Mapo Tofu</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/UgiZUho.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="58.葱爆大肠" data-es="58.Intestino De Cerdo En Salsa De Puerro" data-en="58.Pork Intestines Fried With Scallion"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">58.葱爆大肠</span>
+        <span class="es">Intestino De Cerdo En Salsa De Puerro</span>
+        <span class="en">Pork Intestines Fried With Scallion</span>
+      </div>
+    </h3>
     <div class="price">9,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/PFp6vhZ.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="59.炸云吞" data-es="59.Wun-tun Frito" data-en="59.Fried Wuntun"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">59.炸云吞</span>
+        <span class="es">Wun-tun Frito</span>
+        <span class="en">Fried Wuntun</span>
+      </div>
+    </h3>
     <div class="price">5,35 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/Y6Ftjvw.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="60.水煮牛肉" data-es="60.Carne De Ternera En Aceite Caliente De Chile" data-en="60.Sliced Beef In Hot Chili Oil"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">60.水煮牛肉</span>
+        <span class="es">Carne De Ternera En Aceite Caliente De Chile</span>
+        <span class="en">Sliced Beef In Hot Chili Oil</span>
+      </div>
+    </h3>
     <div class="price">14,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/d1i5cHa.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="61.水煮鱼" data-es="61.Pescado En Aceite Caliente De Chile" data-en="61.Fish Filets In Hot Chili Oil"></h3>
-    <div class="price"  data-zh="时价" data-es="Precio Segun Mercado" data-en="Market Price"></div>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">61.水煮鱼</span>
+        <span class="es">Pescado En Aceite Caliente De Chile</span>
+        <span class="en">Fish Filets In Hot Chili Oil</span>
+      </div>
+    </h3>
+    <div class="price">
+      <div class="multi-name">
+        <span class="zh">时价</span>
+        <span class="es">Precio Segun Mercado</span>
+        <span class="en">Market Price</span>
+      </div>
+    </div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/v6CYYUw.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="62.干锅大肠" data-es="62.Intestino De Cerdo Con Aceite Picante En Olla Seca" data-en="62.Pork Intestines In Dry Pot"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">62.干锅大肠</span>
+        <span class="es">Intestino De Cerdo Con Aceite Picante En Olla Seca</span>
+        <span class="en">Pork Intestines In Dry Pot</span>
+      </div>
+    </h3>
     <div class="price">12,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/phIl5b4.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="63.干锅虾" data-es="63.Gambas Con Aceite Picante En Olla Seca" data-en="63.Shrimps In Dry Pot"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">63.干锅虾</span>
+        <span class="es">Gambas Con Aceite Picante En Olla Seca</span>
+        <span class="en">Shrimps In Dry Pot</span>
+      </div>
+    </h3>
     <div class="price">11,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/X58qLZT.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="64.干锅蔬菜" data-es="64.Repollo Con Ternera Aceite Picante En Olla Seca" data-en="64.Cabbage With Veal In Dry Pot"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">64.干锅蔬菜</span>
+        <span class="es">Repollo Con Ternera Aceite Picante En Olla Seca</span>
+        <span class="en">Cabbage With Veal In Dry Pot</span>
+      </div>
+    </h3>
     <div class="price">10,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/YqHbZEV.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="65.炸蔬菜" data-es="65.Verdura Frita" data-en="65.Fried Vegetables"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">65.炸蔬菜</span>
+        <span class="es">Verdura Frita</span>
+        <span class="en">Fried Vegetables</span>
+      </div>
+    </h3>
     <div class="price">8,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/l4xrO7z.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="66.牛肉汤面" data-es="66.Tallarines Con Ternera En La Sopa" data-en="66.Beef Noodles In Soup"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">66.牛肉汤面</span>
+        <span class="es">Tallarines Con Ternera En La Sopa</span>
+        <span class="en">Beef Noodles In Soup</span>
+      </div>
+    </h3>
     <div class="price">7,50 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/E7PwIlF.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="67.辣子鸡" data-es="67.Pollo Picante SiChuan" data-en="67.Sichuan Spicy Chicken"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">67.辣子鸡</span>
+        <span class="es">Pollo Picante SiChuan</span>
+        <span class="en">Sichuan Spicy Chicken</span>
+      </div>
+    </h3>
     <div class="price">8,15 €</div>
   </div>
 
   <div class="article" data-allergens="gluten,soy">
     <img class="main-img" src="https://i.imgur.com/De2WfX3.jpg">
     <div class="allergens"></div>
-    <h3 class="article-name" data-zh="68.椒盐鱼片" data-es="68.Pescado Frito Al Sal Y Pimienta" data-en="68.Salt And Pepper Fish Fillet"></h3>
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">68.椒盐鱼片</span>
+        <span class="es">Pescado Frito Al Sal Y Pimienta</span>
+        <span class="en">Salt And Pepper Fish Fillet</span>
+      </div>
+    </h3>
     <div class="price">9,50 €</div>
   </div>
 
@@ -648,11 +1165,19 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 
 <!-- ==================== 当日菜单（现在和特别套餐完全一样的横向并排） ==================== -->
 <h2 class="category" onclick="toggleCategory('menuDia', this)">
-  <span class="cat" data-zh="当日菜单 12€" data-es="Menú Del Día 12€" data-en="Daily Menu 12€"></span> 
-  <span class="subtitle-btn" 
-        data-zh="周一至周五午市（节假日除外），且包含饮料、甜品或咖啡" 
-        data-es="Lunes a viernes al mediodía Excepto día festivo，y incluido: Bebida Postre o Café" 
-        data-en="Monday to Friday lunchtime Except holidays，and included Drink, Dessert or Coffee">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">当日菜单 12€</span>
+      <span class="es">Menú Del Día 12€</span>
+      <span class="en">Daily Menu 12€</span>
+    </div>
+  </span> 
+  <span class="subtitle-btn">
+    <div class="multi-name">
+      <span class="zh">周一至周五午市（节假日除外），且包含饮料、甜品或咖啡</span>
+      <span class="es">Lunes a viernes al mediodía Excepto día festivo，y incluido: Bebida Postre o Café</span>
+      <span class="en">Monday to Friday lunchtime Except holidays，and included Drink, Dessert or Coffee</span>
+    </div>
   </span>   
   <span>▼</span>
 </h2>
@@ -661,33 +1186,139 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
   <div class="package-row">
     <!-- 第一道 -->
     <div class="package-box">
-      <h3 data-zh="第一道（任选其一）" data-es="PRIMERO PLATO (ELEGIR UNO)" data-en="FIRST COURSE (CHOOSE ONE)"></h3>
+      <h3>
+        <div class="multi-name">
+          <span class="zh">第一道（任选其一）</span>
+          <span class="es">PRIMERO PLATO (ELEGIR UNO)</span>
+          <span class="en">FIRST COURSE (CHOOSE ONE)</span>
+        </div>
+      </h3>
       <ul>
-        <li><span data-zh="中国沙拉" data-es="Ensalada China" data-en="Chinese Salad"></span></li>
-        <li><span data-zh="春卷" data-es="Rollos De Primavera" data-en="Spring Rolls"></span></li>
-        <li><span data-zh="鱼翅汤" data-es="Sopa De Aletas De Tiburón" data-en="Shark Fin Soup"></span></li>
-        <li><span data-zh="酸辣汤" data-es="Sopa Agri Picante" data-en="Hot and Sour Soup"></span></li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">中国沙拉</span>
+              <span class="es">Ensalada China</span>
+              <span class="en">Chinese Salad</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">春卷</span>
+              <span class="es">Rollos De Primavera</span>
+              <span class="en">Spring Rolls</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">鱼翅汤</span>
+              <span class="es">Sopa De Aletas De Tiburón</span>
+              <span class="en">Shark Fin Soup</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">酸辣汤</span>
+              <span class="es">Sopa Agri Picante</span>
+              <span class="en">Hot and Sour Soup</span>
+            </div>
+          </span>
+        </li>
       </ul>
     </div>
 
     <!-- 第二道 -->
     <div class="package-box">
-      <h3 data-zh="第二道（任选其一）" data-es="SEGUNDO PLATO (ELEGIR UNO)" data-en="SECOND COURSE (CHOOSE ONE)"></h3>
+      <h3>
+        <div class="multi-name">
+          <span class="zh">第二道（任选其一）</span>
+          <span class="es">SEGUNDO PLATO (ELEGIR UNO)</span>
+          <span class="en">SECOND COURSE (CHOOSE ONE)</span>
+        </div>
+      </h3>
       <ul>
-        <li><span data-zh="三鲜炒饭" data-es="Arroz Frito 3 Delicias" data-en="Fried Rice 3 Delicacies"></span></li>
-        <li><span data-zh="炒面" data-es="Tallarines Fritos" data-en="Fried Noodles"></span></li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">三鲜炒饭</span>
+              <span class="es">Arroz Frito 3 Delicias</span>
+              <span class="en">Fried Rice 3 Delicacies</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">炒面</span>
+              <span class="es">Tallarines Fritos</span>
+              <span class="en">Fried Noodles</span>
+            </div>
+          </span>
+        </li>
       </ul>
     </div>
 
     <!-- 第三道 -->
     <div class="package-box">
-      <h3 data-zh="第三道（任选其一）" data-es="TERCERO PLATO (ELEGIR UNO)" data-en="THIRD COURSE (CHOOSE ONE)"></h3>
+      <h3>
+        <div class="multi-name">
+          <span class="zh">第三道（任选其一）</span>
+          <span class="es">TERCERO PLATO (ELEGIR UNO)</span>
+          <span class="en">THIRD COURSE (CHOOSE ONE)</span>
+        </div>
+      </h3>
       <ul>
-        <li><span data-zh="杏仁鸡" data-es="Pollo Con Almendras" data-en="Chicken With Almonds"></span></li>
-        <li><span data-zh="蚝油牛肉" data-es="Ternera Con Salsa De Ostra" data-en="Beef With Oyster Sauce"></span></li>
-        <li><span data-zh="鸡肉球" data-es="Bola De Pollo" data-en="Chicken Ball"></span></li>
-        <li><span data-zh="咕咾肉" data-es="Cerdo Agridulce" data-en="Sweet And Sour Pork"></span></li>
-        <li><span data-zh="竹笋蘑菇鸡" data-es="Pollo Con Bambú Y Setas" data-en="Chicken With Bamboo And Mushrooms"></span></li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">杏仁鸡</span>
+              <span class="es">Pollo Con Almendras</span>
+              <span class="en">Chicken With Almonds</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">蚝油牛肉</span>
+              <span class="es">Ternera Con Salsa De Ostra</span>
+              <span class="en">Beef With Oyster Sauce</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">鸡肉球</span>
+              <span class="es">Bola De Pollo</span>
+              <span class="en">Chicken Ball</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">咕咾肉</span>
+              <span class="es">Cerdo Agridulce</span>
+              <span class="en">Sweet And Sour Pork</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">竹笋蘑菇鸡</span>
+              <span class="es">Pollo Con Bambú Y Setas</span>
+              <span class="en">Chicken With Bamboo And Mushrooms</span>
+            </div>
+          </span>
+        </li>
       </ul>
     </div>
   </div>
@@ -695,155 +1326,421 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 </div>
 
 <!-- ==================== 特别套餐（保持你喜欢的横向并排） ==================== -->
-<h2 class="category" onclick="toggleCategory('menuEspecials', this)"><span class="cat" data-zh="特别套餐" data-es="Menús especiales" data-en="Special Menus">特别套餐</span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('menuEspecials', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">特别套餐</span>
+      <span class="es">Menús especiales</span>
+      <span class="en">Special Menus</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="menuEspecials">
   <div class="package-row">
 
     <!-- 2人套餐 -->
     <div class="package-box">
-      <h3 data-zh="2人特别套餐" data-es="Menú Especial Para 2 Personas" data-en="Special Menu For 2 Persons"></h3>
+      <h3>
+        <div class="multi-name">
+          <span class="zh">2人特别套餐</span>
+          <span class="es">Menú Especial Para 2 Personas</span>
+          <span class="en">Special Menu For 2 Persons</span>
+        </div>
+      </h3>
       <div class="price-big">26 €</div>
       <ul>
-        <li><span data-zh="黄瓜沙拉" data-es="Ensalada De Pepino" data-en="Cucumber Salad"></span></li>
-        <li><span data-zh="越南春卷(4个)" data-es="Rollos De Vietnamita(4u)" data-en="Vietnamese Rolls(4pcs)"></span></li>
-        <li><span data-zh="蔬菜炒饭" data-es="Arroz Con Verdura" data-en="Vegetable Rice"></span></li>
-        <li><span data-zh="铁板牛肉" data-es="Ternera Tempayaki" data-en="Teppanyaki Beef"></span></li>
-        <li><span data-zh="炸鸭" data-es="Pato Frito" data-en="Fried Duck"></span></li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">黄瓜沙拉</span>
+              <span class="es">Ensalada De Pepino</span>
+              <span class="en">Cucumber Salad</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">越南春卷(4个)</span>
+              <span class="es">Rollos De Vietnamita(4u)</span>
+              <span class="en">Vietnamese Rolls(4pcs)</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">蔬菜炒饭</span>
+              <span class="es">Arroz Con Verdura</span>
+              <span class="en">Vegetable Rice</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">铁板牛肉</span>
+              <span class="es">Ternera Tempayaki</span>
+              <span class="en">Teppanyaki Beef</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">炸鸭</span>
+              <span class="es">Pato Frito</span>
+              <span class="en">Fried Duck</span>
+            </div>
+          </span>
+        </li>
       </ul>
     </div>
 
     <!-- 3人套餐 -->
     <div class="package-box">
-      <h3 data-zh="3人特别套餐" data-es="Menú Especial Para 3 Personas" data-en="Special Menu For 3 Persons"></h3>
+      <h3>
+        <div class="multi-name">
+          <span class="zh">3人特别套餐</span>
+          <span class="es">Menú Especial Para 3 Personas</span>
+          <span class="en">Special Menu For 3 Persons</span>
+        </div>
+      </h3>
       <div class="price-big">39 €</div>
       <ul>
-        <li><span data-zh="黄瓜沙拉" data-es="Ensalada De Pepino" data-en="Cucumber Salad"></span></li>
-        <li><span data-zh="越南春卷(6个)" data-es="Rollos De Vietnamita(6u)" data-en="Vietnamese Rolls(6pcs)"></span></li>
-        <li><span data-zh="蔬菜炒饭" data-es="Arroz Con Verdura" data-en="Vegetable Rice"></span></li>
-        <li><span data-zh="铁板牛肉" data-es="Ternera Tempayaki" data-en="Teppanyaki Beef"></span></li>
-        <li><span data-zh="炸鸭" data-es="Pato Frito" data-en="Fried Duck"></span></li>
-        <li><span data-zh="炸虾" data-es="Gambas Rebozados" data-en="Breaded Prawns"></span></li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">黄瓜沙拉</span>
+              <span class="es">Ensalada De Pepino</span>
+              <span class="en">Cucumber Salad</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">越南春卷(6个)</span>
+              <span class="es">Rollos De Vietnamita(6u)</span>
+              <span class="en">Vietnamese Rolls(6pcs)</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">蔬菜炒饭</span>
+              <span class="es">Arroz Con Verdura</span>
+              <span class="en">Vegetable Rice</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">铁板牛肉</span>
+              <span class="es">Ternera Tempayaki</span>
+              <span class="en">Teppanyaki Beef</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">炸鸭</span>
+              <span class="es">Pato Frito</span>
+              <span class="en">Fried Duck</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">炸虾</span>
+              <span class="es">Gambas Rebozados</span>
+              <span class="en">Breaded Prawns</span>
+            </div>
+          </span>
+        </li>
       </ul>
     </div>
 
     <!-- 4人套餐 -->
     <div class="package-box">
-      <h3 data-zh="4人特别套餐" data-es="Menú Especial Para 4 Personas" data-en="Special Menu For 4 Persons"></h3>
+      <h3>
+        <div class="multi-name">
+          <span class="zh">4人特别套餐</span>
+          <span class="es">Menú Especial Para 4 Personas</span>
+          <span class="en">Special Menu For 4 Persons</span>
+        </div>
+      </h3>
       <div class="price-big">52 €</div>
       <ul>
-        <li><span data-zh="黄瓜沙拉" data-es="Ensalada De Pepino" data-en="Cucumber Salad"></span></li>
-        <li><span data-zh="越南春卷(8个)" data-es="Rollos De Vietnamita(8u)" data-en="Vietnamese Rolls(8pcs)"></span></li>
-        <li><span data-zh="蔬菜炒饭" data-es="Arroz Con Verdura" data-en="Vegetable rice"></span></li>
-        <li><span data-zh="牛肉炒面" data-es="Tallarines Fritos Con Carne De Ternera" data-en="Fried Noodles With Beef"></span></li>
-        <li><span data-zh="炸鸭" data-es="Pato Frito" data-en="Fried Duck"></span></li>
-        <li><span data-zh="铁板牛肉" data-es="Ternera Tempayaki" data-en="Teppanyaki Beef"></span></li>
-        <li><span data-zh="炸虾" data-es="Gambas Rebozados" data-en="Breaded Prawns"></span></li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">黄瓜沙拉</span>
+              <span class="es">Ensalada De Pepino</span>
+              <span class="en">Cucumber Salad</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">越南春卷(8个)</span>
+              <span class="es">Rollos De Vietnamita(8u)</span>
+              <span class="en">Vietnamese Rolls(8pcs)</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">蔬菜炒饭</span>
+              <span class="es">Arroz Con Verdura</span>
+              <span class="en">Vegetable rice</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">牛肉炒面</span>
+              <span class="es">Tallarines Fritos Con Carne De Ternera</span>
+              <span class="en">Fried Noodles With Beef</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">炸鸭</span>
+              <span class="es">Pato Frito</span>
+              <span class="en">Fried Duck</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">铁板牛肉</span>
+              <span class="es">Ternera Tempayaki</span>
+              <span class="en">Teppanyaki Beef</span>
+            </div>
+          </span>
+        </li>
+        <li>
+          <span>
+            <div class="multi-name">
+              <span class="zh">炸虾</span>
+              <span class="es">Gambas Rebozados</span>
+              <span class="en">Breaded Prawns</span>
+            </div>
+          </span>
+        </li>
       </ul>
     </div>
 
   </div>
 </div>
 
-<h2 class="category" onclick="toggleCategory('bebidas', this)"><span class="cat" data-zh="饮料" data-es="Bebidas" data-en="Drinks"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('bebidas', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">饮料</span>
+      <span class="es">Bebidas</span>
+      <span class="en">Drinks</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="bebidas">
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="199.Sangría De La Casa" data-es="199.Sangría De La Casa" data-en="199.Sangría De La Casa">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">199.Sangría De La Casa</span>
+        <span class="es">Sangría De La Casa</span>
+        <span class="en">Sangría De La Casa</span>
+      </div>
     </h3>
   <div class="price">11,50 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="200.Cerveza 1/3" data-es="200.Cerveza 1/3" data-en="200.Cerveza 1/3">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">200.Cerveza 1/3</span>
+        <span class="es">Cerveza 1/3</span>
+        <span class="en">Cerveza 1/3</span>
+      </div>
     </h3>
   <div class="price">2,60 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="201.Refrescos" data-es="201.Refrescos" data-en="201.Refrescos">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">201.Refrescos</span>
+        <span class="es">Refrescos</span>
+        <span class="en">Refrescos</span>
+      </div>
     </h3>
   <div class="price">2,40 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="202.水（0.5升）" data-es="202.Agua 1/2 Litro" data-en="202.Water 1/2 Liter">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">202.水（0.5升）</span>
+        <span class="es">Agua 1/2 Litro</span>
+        <span class="en">Water 1/2 Liter</span>
+      </div>
     </h3>
   <div class="price">1,80 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="203.水（大）" data-es="203.Agua Grande" data-en="203.Water(Big)">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">203.水（大）</span>
+        <span class="es">Agua Grande</span>
+        <span class="en">Water(Big)</span>
+      </div>
     </h3>
   <div class="price">2,80 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="204.喜力啤酒" data-es="204.Heineken" data-en="204.Heineken">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">204.喜力啤酒</span>
+        <span class="es">Heineken</span>
+        <span class="en">Heineken</span>
+      </div>
     </h3>
   <div class="price">2,80 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="205.中国啤酒" data-es="205.Cerveza China" data-en="205.Chinese Beer">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">205.中国啤酒</span>
+        <span class="es">Cerveza China</span>
+        <span class="en">Chinese Beer</span>
+      </div>
     </h3>
   <div class="price">2,80 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="206.甘蔗汁" data-es="206.Caña" data-en="206.Sugarcane Juice">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">206.甘蔗汁</span>
+        <span class="es">Caña</span>
+        <span class="en">Sugarcane Juice</span>
+      </div>
     </h3>
   <div class="price">2,40 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="207.Jarra Cerveza" data-es="207.Jarra Cerveza" data-en="207.Jarra Cerveza">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">207.Jarra Cerveza</span>
+        <span class="es">Jarra Cerveza</span>
+        <span class="en">Jarra Cerveza</span>
+      </div>
     </h3>
   <div class="price">9,50 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('coffeeTea', this)"><span class="cat" data-zh="咖啡和茶" data-es="Café Y Té" data-en="Coffee And Tea"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('coffeeTea', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">咖啡和茶</span>
+      <span class="es">Café Y Té</span>
+      <span class="en">Coffee And Tea</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="coffeeTea">
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="208.Café Solo" data-es="208.Café Solo" data-en="208.Café Solo">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">208.Café Solo</span>
+        <span class="es">Café Solo</span>
+        <span class="en">Café Solo</span>
+      </div>
     </h3>
   <div class="price">1,30 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="209.Cortado" data-es="209.Cortado" data-en="209.Cortado">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">209.Cortado</span>
+        <span class="es">Cortado</span>
+        <span class="en">Cortado</span>
+      </div>
     </h3>
   <div class="price">1,40 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="210.Bombón" data-es="210.Bombón" data-en="210.Bombón">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">210.Bombón</span>
+        <span class="es">Bombón</span>
+        <span class="en">Bombón</span>
+      </div>
     </h3>
   <div class="price">1,50 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="211.Café Con Leche" data-es="211.Café Con Leche" data-en="211.Café Con Leche">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">211.Café Con Leche</span>
+        <span class="es">Café Con Leche</span>
+        <span class="en">Café Con Leche</span>
+      </div>
     </h3>
   <div class="price">1,60 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="212.Carajillo" data-es="212.Carajillo" data-en="212.Carajillo">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">212.Carajillo</span>
+        <span class="es">Carajillo</span>
+        <span class="en">Carajillo</span>
+      </div>
     </h3>
   <div class="price">1,70 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="213.中国茶" data-es="213.Té Chino" data-en="213.Chinese Tea">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">213.中国茶</span>
+        <span class="es">Té Chino</span>
+        <span class="en">Chinese Tea</span>
+      </div>
     </h3>
   <div class="price">2,00 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="214.Infusión" data-es="214.Infusión" data-en="214.Infusión">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">214.Infusión</span>
+        <span class="es">Infusión</span>
+        <span class="en">Infusión</span>
+      </div>
     </h3>
   <div class="price">1,40 €</div>
   </div>
@@ -851,93 +1748,182 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 </div>
 
 
-<h2 class="category" onclick="toggleCategory('redWine', this)"><span class="cat" data-zh="红葡萄酒" data-es="VINO TINTO" data-en="Red Wine"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('redWine', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">红葡萄酒</span>
+      <span class="es">VINO TINTO</span>
+      <span class="en">Red Wine</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="redWine">
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="215.Vino De La Casa" data-es="215.Vino De La Casa" data-en="215.Vino De La Casa">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">215.Vino De La Casa</span>
+        <span class="es">Vino De La Casa</span>
+        <span class="en">Vino De La Casa</span>
+      </div>
     </h3>
   <div class="price">10,50 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="216.El Coto" data-es="216.El Coto" data-en="216.El Coto">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">216.El Coto</span>
+        <span class="es">El Coto</span>
+        <span class="en">El Coto</span>
+      </div>
     </h3>
   <div class="price">14,95 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="217.Cune" data-es="217.Cune" data-en="217.Cune">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">217.Cune</span>
+        <span class="es">Cune</span>
+        <span class="en">Cune</span>
+      </div>
     </h3>
   <div class="price">14,95 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="219.Faustino" data-es="219.Faustino" data-en="219.Faustino">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">219.Faustino</span>
+        <span class="es">Faustino</span>
+        <span class="en">Faustino</span>
+      </div>
     </h3>
   <div class="price">13,00 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="220.Marques De Casere" data-es="220.Marques De Casere" data-en="220.Marques De Casere">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">220.Marques De Casere</span>
+        <span class="es">Marques De Casere</span>
+        <span class="en">Marques De Casere</span>
+      </div>
     </h3>
   <div class="price">15,50 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('roseWine', this)"><span class="cat" data-zh="玫瑰红葡萄酒" data-es="VINO ROSADO" data-en="Rose Wine"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('roseWine', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">玫瑰红葡萄酒</span>
+      <span class="es">VINO ROSADO</span>
+      <span class="en">Rose Wine</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="roseWine">
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="221.Peñascal" data-es="221.Peñascal" data-en="221.Peñascal">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">221.Peñascal</span>
+        <span class="es">Peñascal</span>
+        <span class="en">Peñascal</span>
+      </div>
     </h3>
   <div class="price">10,50 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="222.Lambrusco" data-es="222.Lambrusco" data-en="222.Lambrusco">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">222.Lambrusco</span>
+        <span class="es">Lambrusco</span>
+        <span class="en">Lambrusco</span>
+      </div>
     </h3>
   <div class="price">9,50 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="223.Vino De La Casa" data-es="223.Vino De La Casa" data-en="223.Vino De La Casa">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">223.Vino De La Casa</span>
+        <span class="es">Vino De La Casa</span>
+        <span class="en">Vino De La Casa</span>
+      </div>
     </h3>
   <div class="price">9,50 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="225.Marques De Casere" data-es="225.Marques De Casere" data-en="225.Marques De Casere">
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">225.Marques De Casere</span>
+        <span class="es">Marques De Casere</span>
+        <span class="en">Marques De Casere</span>
+      </div>
     </h3>
   <div class="price">12,80 €</div>
   </div>
 
 </div>
 
-<h2 class="category" onclick="toggleCategory('whiteWine', this)"><span class="cat" data-zh="白葡萄酒" data-es="VINO BLANCO" data-en="White Wine"></span> <span>▼</span></h2>
+<h2 class="category" onclick="toggleCategory('whiteWine', this)">
+  <span class="cat">
+    <div class="multi-name">
+      <span class="zh">白葡萄酒</span>
+      <span class="es">VINO BLANCO</span>
+      <span class="en">White Wine</span>
+    </div>
+  </span> <span>▼</span>
+</h2>
 <div class="menu-list" id="whiteWine">
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="226.本店干白" data-es="226.Vino De La Casa" data-en="226.Vino De La Casa">      
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">226.本店干白</span>
+        <span class="es">Vino De La Casa</span>
+        <span class="en">Vino De La Casa</span>
+      </div>
     </h3>
     <div class="price">10,50 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="227.Marina Alta" data-es="227.Marina Alta" data-en="227.Marina Alta">      
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">227.Marina Alta</span>
+        <span class="es">Marina Alta</span>
+        <span class="en">Marina Alta</span>
+      </div>
     </h3>
     <div class="price">14,95 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="228.Blanc Pescador" data-es="228.Blanc Pescador" data-en="228.Blanc Pescador">      
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">228.Blanc Pescador</span>
+        <span class="es">Blanc Pescador</span>
+        <span class="en">Blanc Pescador</span>
+      </div>
     </h3>
     <div class="price">14,95 €</div>
   </div>
 
   <div class="article" data-allergens="">
-    <h3 class="article-name" data-zh="229.Diamante" data-es="229.Diamante" data-en="229.Diamante">      
+    <h3 class="article-name">
+      <div class="multi-name">
+        <span class="zh">229.Diamante</span>
+        <span class="es">Diamante</span>
+        <span class="en">Diamante</span>
+      </div>
     </h3>
     <div class="price">13,50 €</div>
   </div>
@@ -946,15 +1932,21 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 
 <!-- 过敏原图例移动到页面最底部 -->
 <div class="allergen-legend">
-  <h3 id="legendTitle" data-zh="过敏原图例" data-es="Leyenda de alérgenos" data-en="Allergen Legend"></h3>
+  <h3 id="legendTitle">
+    <div class="multi-name">
+      <span class="zh">过敏原图例</span>
+      <span class="es">Leyenda de alérgenos</span>
+      <span class="en">Allergen Legend</span>
+    </div>
+  </h3>
   <div id="legend"></div>
 </div>
 
-<div class="lang-switch">
+<!-- <div class="lang-switch">
   <button onclick="setLang('zh')" class="active">中</button>
   <button onclick="setLang('es')">ES</button>
   <button onclick="setLang('en')">EN</button>
-</div>
+</div> -->
 
 <script>
 const ALLERGEN_ICONS = {
@@ -980,7 +1972,7 @@ const ALLERGEN_LABELS={
   en:{gluten:'Gluten',crustaceans:'Crustaceans',eggs:'Eggs',fish:'Fish',peanuts:'Peanuts',soy:'Soy',milk:'Milk',nuts:'Nuts',celery:'Celery',mustard:'Mustard',sesame:'Sesame',sulphites:'Sulphites',lupin:'Lupin',molluscs:'Molluscs'}
 };
 
-let currentLang='zh';
+/* let currentLang='zh'; */ // 注释掉
 
 function renderAllergens(){
   document.querySelectorAll('.article').forEach(article=>{
@@ -992,7 +1984,7 @@ function renderAllergens(){
       const img=document.createElement('img');
       img.src=ALLERGEN_ICONS[key];
       img.className='allergen-icon';
-      img.title=ALLERGEN_LABELS[currentLang][key];
+      img.title=`${ALLERGEN_LABELS.zh[key]} / ${ALLERGEN_LABELS.es[key]} / ${ALLERGEN_LABELS.en[key]}`;
       box.appendChild(img);
     });
   });
@@ -1002,11 +1994,11 @@ function renderAllergens(){
 function renderLegend(){
   const legend=document.getElementById('legend');
   legend.innerHTML=Object.keys(ALLERGEN_ICONS).map(k=>
-    `<span><img src="${ALLERGEN_ICONS[k]}">${ALLERGEN_LABELS[currentLang][k]}</span>`
+    `<span class="multi-allergen"><img src="${ALLERGEN_ICONS[k]}"><div class="multi-text"><span class="zh">${ALLERGEN_LABELS.zh[k]}</span><span class="es">${ALLERGEN_LABELS.es[k]}</span><span class="en">${ALLERGEN_LABELS.en[k]}</span></div></span>`
   ).join('');
 }
 
-function setLang(lang){
+/* function setLang(lang){
   currentLang=lang;
   document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.lang-switch button')[lang==='zh'?0:lang==='es'?1:2].classList.add('active');
@@ -1015,7 +2007,7 @@ function setLang(lang){
 
   document.querySelectorAll('[data-'+lang+']').forEach(el=>{el.textContent=el.dataset[lang];});
   renderAllergens();
-}
+} */ // 注释掉整个setLang函数
 
 function toggleCategory(id,el){
   const list=document.getElementById(id);
@@ -1025,7 +2017,8 @@ function toggleCategory(id,el){
 }
 
 // 初始化（放在 body 最后，确保 DOM 已加载）
-setLang('es');
+/* setLang('es'); */ // 注释掉
+renderAllergens();
 </script>
 
 </body>
