@@ -22,7 +22,8 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
   cursor:pointer;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:flex-start;
+  gap:12px;
   box-shadow:0 4px 15px rgba(0,0,0,.6) !important;
   transition:all .2s;
 }
@@ -33,24 +34,41 @@ header{background:#d32f2f;color:#fff;text-align:center;padding:16px;font-size:22
 .category span{
   color:#ff3333 !important;          /* 箭头也保持红色 */
 }
+.category > .cat{
+  flex:1;
+  min-width:0;
+  display:block;
+}
+.category > span:last-child{
+  flex:0 0 auto;
+  margin-top:2px;
+  white-space:nowrap;
+  flex-shrink: 0;
+}
 
 /* 新增：当日菜单专用 wrapper，彻底解决手机重叠问题 */
 .cat-wrapper {
   display:flex;
   flex-direction:column;
   flex:1;
+  min-width:0;
   width:100%;
 }
 .cat-title {
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:flex-start;
+  gap:12px;
   width:100%;
 }
 
 /* subtitle-btn 不再使用 absolute，改成静态放在标题下方最左边 */
 .subtitle-btn{
   position:static !important;
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding-right:34px;
   font-size:8px !important;           /* 手机能看清的最小号字体 */
   color:#ff9999;
   font-weight:400;
@@ -1282,9 +1300,9 @@ header .multi-name .en {
     <div class="cat-title">
       <span class="cat">
         <div class="multi-name">
-          <span class="zh">当日菜单：     </span>
-          <span class="es">Menú Del Día：</span>
-          <span class="en">Daily Menu：  </span>
+          <span class="zh">当日菜单</span>
+          <span class="es">Menú Del Día</span>
+          <span class="en">Daily Menu</span>
         </div>
       </span>
       <span class="pri-big">12 €</span>
@@ -1446,14 +1464,28 @@ header .multi-name .en {
 
 <!-- ==================== 特别套餐（保持你喜欢的横向并排） ==================== -->
 <h2 class="category" onclick="toggleCategory('menuEspecials', this)">
-  <span class="cat">
-    <div class="multi-name">
-      <span class="zh">特别套餐：          不包含饮料、甜品或咖啡</span>
-      <span class="es">Menús especiales： No incluido: Bebida Postre o Café</span>
-      <span class="en">Special Menus ：   Not included Drink, Dessert or Coffee</span>
+  <div class="cat-wrapper">
+    <div class="cat-title">
+      <span class="cat">
+        <div class="multi-name">
+          <span class="zh">特别套餐</span>
+          <span class="es">Menús especiales</span>
+          <span class="en">Special Menus</span>
+        </div>
+      </span>
     </div>
-  </span> <span>▼</span>
+    <!-- subtitle-btn 现在是静态、左下方、最小字体，不会重叠 -->
+    <span class="subtitle-btn">
+      <div class="multi-name">
+        <span class="zh">不包含饮料、甜品或咖啡</span>
+        <span class="es">No incluido: Bebida Postre o Café</span>
+        <span class="en">Not included Drink, Dessert or Coffee</span>
+      </div>
+    </span>
+  </div>
+  <span>▼</span>
 </h2>
+
 <div class="menu-list" id="menuEspecials">
   <div class="package-row">
 
@@ -2072,9 +2104,15 @@ function renderLegend(){
 
 function toggleCategory(id,el){
   const list=document.getElementById(id);
-  const arrow=el.querySelector('span:last-child');
-  if(list.style.display==='none'){list.style.display='grid';arrow.textContent='▼'}
-  else{list.style.display='none';arrow.textContent='▶'}
+  const arrow=el.querySelector(':scope > span:last-child');
+  const isHidden = window.getComputedStyle(list).display === 'none';
+  if(isHidden){
+    list.style.display='grid';
+    arrow.textContent='▼';
+  } else {
+    list.style.display='none';
+    arrow.textContent='▶';
+  }
 }
 
 // 初始化（放在 body 最后，确保 DOM 已加载）
